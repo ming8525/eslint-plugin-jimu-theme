@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/colors"),
+const rule = require("../../../lib/rules/no-theme-colors-access-directly"),
   RuleTester = require("eslint").RuleTester;
 
 
@@ -16,16 +16,28 @@ const rule = require("../../../lib/rules/colors"),
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
-ruleTester.run("colors", rule, {
+const ruleTester = new RuleTester({
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 6,
+    sourceType: 'module',
+    project: ['../../tsconfig.json']
+  }
+});
+
+ruleTester.run("no-theme-colors-access-directly", rule, {
   valid: [
-    // give me some code that won't trigger a warning
+    {
+      code: "const primary = theme.colors.primary"
+    }
   ],
 
   invalid: [
     {
-      code: "theme.colors.primary",
-      errors: [{ message: "Fill me in.", type: "Me too" }],
+      code: "const colors = theme.colors",
+      errors: [{ message: "Do not directly access theme.colors in variable assignment.", type: "VariableDeclarator" }]
     },
   ],
 });
