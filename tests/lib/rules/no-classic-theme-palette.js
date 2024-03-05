@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/no-classic-theme-colors"),
+const rule = require("../../../lib/rules/no-classic-theme-palette"),
   RuleTester = require("eslint").RuleTester;
 
 
@@ -27,7 +27,7 @@ const ruleTester = new RuleTester({
   }
 });
 
-ruleTester.run("no-classic-theme-colors", rule, {
+ruleTester.run("no-classic-theme-palette", rule, {
   valid: [
     {
       code: "const style = `border-color: ${theme.sys.color.primary.main};`"
@@ -36,17 +36,14 @@ ruleTester.run("no-classic-theme-colors", rule, {
 
   invalid: [
     {
-      code: "const style = `border-color: ${theme.colors.primary};`",
-      output: "const style = `border-color: ${theme.sys.color.primary.main};`",
-      errors: [{ message: "Unexpected usage of theme colors of classic theme", type: "MemberExpression" }]
+      code: "const style = `border-color: ${theme.colors.palette.primary[100]};`",
+      output: "const style = `border-color: ${theme.sys.color.primary.light};`",
+      errors: [{ message: "Unexpected usage of theme palette of classic theme", type: "MemberExpression" }]
     },
-  ],
-
-  invalid: [
     {
-      code: "const style = `border-color: ${theme.colors.white};`",
-      output: "const style = `border-color: ${theme.ref.palette.white};`",
-      errors: [{ message: "Unexpected usage of theme colors of classic theme", type: "MemberExpression" }]
-    },
+      code: "const style = `border-color: ${theme.colors.palette.primary[500]};`",
+      output: "const style = `border-color: ${theme.sys.color.primary.main};`",
+      errors: [{ message: "Unexpected usage of theme palette of classic theme", type: "MemberExpression" }]
+    }
   ]
 });

@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/no-theme-colors-access-directly"),
+const rule = require("../../../lib/rules/no-classic-theme-colors-access-directly"),
   RuleTester = require("eslint").RuleTester;
 
 
@@ -27,7 +27,7 @@ const ruleTester = new RuleTester({
   }
 });
 
-ruleTester.run("no-theme-colors-access-directly", rule, {
+ruleTester.run("no-classic-theme-colors-access-directly", rule, {
   valid: [
     {
       code: "const primary = theme.colors.primary"

@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/no-classic-theme-colors"),
+const rule = require("../../../lib/rules/no-classic-theme-palette-access-directly"),
   RuleTester = require("eslint").RuleTester;
 
 
@@ -27,26 +27,17 @@ const ruleTester = new RuleTester({
   }
 });
 
-ruleTester.run("no-classic-theme-colors", rule, {
+ruleTester.run("no-classic-theme-palette-access-directly", rule, {
   valid: [
     {
-      code: "const style = `border-color: ${theme.sys.color.primary.main};`"
+      code: "const primary = theme.colors.palette.primary"
     }
   ],
 
   invalid: [
     {
-      code: "const style = `border-color: ${theme.colors.primary};`",
-      output: "const style = `border-color: ${theme.sys.color.primary.main};`",
-      errors: [{ message: "Unexpected usage of theme colors of classic theme", type: "MemberExpression" }]
+      code: "const colors = theme.colors.palette",
+      errors: [{ message: "Do not directly access theme.colors.palette in variable assignment.", type: "VariableDeclarator" }]
     },
   ],
-
-  invalid: [
-    {
-      code: "const style = `border-color: ${theme.colors.white};`",
-      output: "const style = `border-color: ${theme.ref.palette.white};`",
-      errors: [{ message: "Unexpected usage of theme colors of classic theme", type: "MemberExpression" }]
-    },
-  ]
 });
