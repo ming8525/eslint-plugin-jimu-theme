@@ -1,9 +1,6 @@
 {
-  "compileOnSave": false,
-  "buildOnSave": false,
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "outDir": "./dist",
     "sourceMap": true,
     "module": "esnext",
     "moduleResolution": "node",
@@ -21,10 +18,6 @@
     "noUnusedLocals": false,
     "allowUnreachableCode": true,
     "allowJs": true,
-    "strictNullChecks": false,
-    "baseUrl": ".",
-  },
-  "exclude": [
-    "node_modules"
-  ]
+    "strictNullChecks": false
+  }
 }

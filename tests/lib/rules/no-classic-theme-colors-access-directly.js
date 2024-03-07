@@ -37,7 +37,7 @@ ruleTester.run("no-classic-theme-colors-access-directly", rule, {
   invalid: [
     {
       code: "const colors = theme.colors",
-      errors: [{ message: "Do not directly access theme.colors in variable assignment.", type: "VariableDeclarator" }]
+      errors: [{ message: "Do not directly access `theme.colors` in variable assignment.", type: "VariableDeclarator" }]
     },
   ],
 });

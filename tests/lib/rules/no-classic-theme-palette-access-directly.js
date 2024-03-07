@@ -36,8 +36,8 @@ ruleTester.run("no-classic-theme-palette-access-directly", rule, {
 
   invalid: [
     {
-      code: "const colors = theme.colors.palette",
-      errors: [{ message: "Do not directly access theme.colors.palette in variable assignment.", type: "VariableDeclarator" }]
+      code: "const palette = theme.colors.palette",
+      errors: [{ message: "Do not directly access `theme.colors.palette` in variable assignment.", type: "VariableDeclarator" }]
     },
   ],
 });
