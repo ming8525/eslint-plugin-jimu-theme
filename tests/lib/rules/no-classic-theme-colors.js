@@ -49,6 +49,11 @@ ruleTester.run("no-classic-theme-colors", rule, {
       code: "const style = `border-color: ${theme?.colors.dark};`",
       output: "const style = `border-color: ${theme?.ref.palette.neutral[1200]};`",
       errors: [{ messageId: "message", type: "MemberExpression" }]
+    },
+    {
+      code: "const style = `border-color: ${theme?.colors.transparent};`",
+      output: "const style = `border-color: ${'transparent'};`",
+      errors: [{ messageId: "message", type: "MemberExpression" }]
     }
   ]
 });

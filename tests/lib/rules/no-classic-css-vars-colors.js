@@ -29,5 +29,10 @@ ruleTester.run("no-classic-css-vars-colors", rule, {
       output: "const style = `border-color: var(--ref-palette-neutral-1200);`",
       errors: [{ messageId: "message", type: "TemplateElement" }]
     },
+    {
+      code: "const style = `border-color: var(--transparent);`",
+      output: "const style = `border-color: transparent;`",
+      errors: [{ messageId: "message", type: "TemplateElement" }]
+    },
   ],
 });

@@ -24,5 +24,10 @@ ruleTester.run("no-classic-colors-directly", rule, {
       output: "const style = `border-color: ${theme?.colors?.light};`",
       errors: [{ messageId: "message", type: "MemberExpression" }]
     },
+    {
+      code: "const style = `border-color: ${colors?.transparent};`",
+      output: "const style = `border-color: ${theme?.colors?.transparent};`",
+      errors: [{ messageId: "message", type: "MemberExpression" }]
+    },
   ],
 });
