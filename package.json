@@ -17,12 +17,13 @@
     "test": "mocha tests --recursive",
     "update:eslint-docs": "eslint-doc-generator"
   },
-  "dependencies": {
-    "requireindex": "^1.2.0"
-  },
   "devDependencies": {
+    "@types/eslint": "^8.56.5",
+    "@typescript-eslint/rule-tester": "^7.1.1",
+    "@typescript-eslint/types": "^7.1.1",
+    "@typescript-eslint/utils": "^7.1.1",
     "eslint": "^8.19.0",
-    "eslint-doc-generator": "^1.0.0",
+    "eslint-doc-generator": "^1.7.0",
     "eslint-plugin-eslint-plugin": "^5.0.0",
     "eslint-plugin-node": "^11.1.0",
     "mocha": "^10.0.0",

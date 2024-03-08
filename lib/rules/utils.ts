@@ -1,16 +1,16 @@
 const ThemeColors = ['primary', 'secondary', 'danger', 'warning', 'info', 'success']
 const CommonColors = ['white', 'black']
 const LightDarkColors = ['light', 'dark']
-const ThemeCommonColors = ThemeColors.concat(CommonColors)
-const ThemeAllColors = ThemeCommonColors.concat(LightDarkColors)
-const ThemePaletteShades = ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+export const ThemeCommonColors = ThemeColors.concat(CommonColors)
+export const ThemeAllColors = ThemeCommonColors.concat(LightDarkColors)
+export const ThemePaletteShades = ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 
 function isStringNumber(str) {
   return /^[-+]?[0-9]*\.?[0-9]+$/.test(str);
 }
 
 
-function getColorNameInNewTheme(inputColorName) {
+export function getColorNameInNewTheme(inputColorName) {
   let scope = 'sys.color'
   let colorName = inputColorName
   if (colorName === 'danger') {
@@ -25,7 +25,7 @@ function getColorNameInNewTheme(inputColorName) {
   return colorName
 }
 
-function getColorNameAndScopeInNewTheme(inputColorName) {
+export function getColorNameAndScopeInNewTheme(inputColorName) {
   let scope = 'sys.color'
   let colorName = inputColorName
   if (colorName === 'danger') {
@@ -83,7 +83,7 @@ const defaultOptional = {
   palette: false
 }
 
-function getColorVariableMappingInNewTheme(inputColorName, inputShape, optional = defaultOptional) {
+export function getColorVariableMappingInNewTheme(inputColorName, inputShape, optional = defaultOptional) {
   let mapping = ''
   const { scope, colorName } = getColorNameAndScopeInNewTheme(inputColorName)
   const k1 = 'theme'
@@ -130,7 +130,7 @@ function isEqualOrContains(var1, var2) {
   return var1 === var2 || (Array.isArray(var1) && var1.includes(var2));
 }
 
-function isSpecifiedObjectOptinal(node, identifier) {
+export function isSpecifiedObjectOptinal(node, identifier) {
   if (!node || node.type !== 'MemberExpression') {
     return false;
   }
@@ -160,7 +160,7 @@ function isSpecifiedObjectOptinal(node, identifier) {
 }
 
 function getiOptinalMemberExpressionObjectInfo(object, identifiers) {
-  const info = {}
+  const info: { [x: string]: any } = {}
   if (object.type === 'Identifier' && identifiers.includes(object.name)) {
     info.name = object.name
     info.optional = true
@@ -174,7 +174,7 @@ function getiOptinalMemberExpressionObjectInfo(object, identifiers) {
   return info
 }
 
-function getMemberExpressionNodeOptinalObject(node, identifiers) {
+export function getMemberExpressionNodeOptinalObject(node, identifiers) {
   if (!node || node.type !== 'MemberExpression') {
     return false;
   }
@@ -201,7 +201,7 @@ function getMemberExpressionNodeOptinalObject(node, identifiers) {
   return optionalObject;
 }
 
-function isSpecifiedMemberExpressionNode(node, identifiers) {
+export function isSpecifiedMemberExpressionNode(node, identifiers) {
   if (!node || node.type !== 'MemberExpression' || !Array.isArray(identifiers) || identifiers.length === 0) {
     return false;
   }
@@ -228,17 +228,4 @@ function isSpecifiedMemberExpressionNode(node, identifiers) {
   }
 
   return false;
-}
-
-module.exports = {
-  ThemeCommonColors,
-  ThemeAllColors,
-  ThemePaletteShades,
-  getColorNameInNewTheme,
-  getColorNameAndScopeInNewTheme,
-  getColorShadeInNewTheme,
-  isSpecifiedMemberExpressionNode,
-  isSpecifiedObjectOptinal,
-  getMemberExpressionNodeOptinalObject,
-  getColorVariableMappingInNewTheme
 }

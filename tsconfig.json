@@ -2,15 +2,15 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
     "target": "es6",
     "skipLibCheck": true,
     "lib": [
       "dom",
       "es6",
       "scripthost",
-      "es2015",
+      "es2016",
       "es2020.Promise"
     ],
     "jsx": "react",

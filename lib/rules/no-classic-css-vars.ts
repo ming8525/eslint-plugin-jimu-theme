@@ -1,20 +1,12 @@
-/**
- * @fileoverview This rule is used to assist in migrating color css vars to the new version.
- * @author ming8525
- */
-"use strict";
-const { getColorNameInNewTheme: getNormalizedColroName } = require('./utils')
 
-module.exports = {
-  meta: {
-    type: "suggestion",
-    docs: {
-      description: "Detect and fix classic theme css vars",
-      category: "Best Practices",
-      recommended: true
-    },
-    fixable: "code",
-  },
+import { getColorNameInNewTheme } from'./utils'
+import { ESLintUtils } from '@typescript-eslint/utils';
+
+const createRule = ESLintUtils.RuleCreator(
+  name => `https://example.com/rule/${name}`,
+);
+
+const rule = createRule({
   create: function (context) {
     return {
       TemplateLiteral(node) {
@@ -25,7 +17,7 @@ module.exports = {
           const regex = /var\(--\b(primary|secondary|danger|warning|info|success)\)/g;
           let match;
           while ((match = regex.exec(text)) !== null) {
-            const colorName = getNormalizedColroName(match[1])
+            const colorName = getColorNameInNewTheme(match[1])
             const start = quasi.range[0] + match.index + 1;
             const end = start + match[0].length;
             context.report({
@@ -34,7 +26,7 @@ module.exports = {
                 start: sourceCode.getLocFromIndex(start),
                 end: sourceCode.getLocFromIndex(end),
               },
-              message: 'Unexpected usage of css vars of classic theme',
+              messageId: 'message',
               fix: function (fixer) {
                 return fixer.replaceTextRange([start, end], `var(--sys-color-${colorName})`);
               },
@@ -44,4 +36,19 @@ module.exports = {
       }
     };
   },
-};
+  name: 'no-classic-css-vars',
+  meta: {
+    type: "suggestion",
+    docs: {
+      description: "Detect and fix classic theme css vars"
+    },
+    fixable: "code",
+    messages: {
+      message: "Unexpected usage of css vars of classic theme",
+    },
+    schema: [],
+  },
+  defaultOptions: []
+})
+
+export default rule
