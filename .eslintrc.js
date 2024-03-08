@@ -12,10 +12,10 @@ module.exports = {
   },
   rules: {
     "node/no-missing-require": ["error", {
-      "allowModules": ["@typescript-eslint/rule-tester"]
+      "allowModules": ["@typescript-eslint/rule-tester", "mocha"]
     }],
     "node/no-unpublished-require": ["error", {
-      "allowModules": ["@typescript-eslint/rule-tester"]
+      "allowModules": ["@typescript-eslint/rule-tester", "mocha"]
     }]
   },
   overrides: [
