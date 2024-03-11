@@ -1,4 +1,4 @@
-# This rule is used to assist in migrating color variables in `theme.colors.palette` to the new version (`jimu-theme/no-classic-theme-palette`)
+# This rule facilitates the transition of CSS variables representing colors from the classic theme to the new theme in style (`jimu-theme/no-classic-css-vars-style`)
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
