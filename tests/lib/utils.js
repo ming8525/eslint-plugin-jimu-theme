@@ -6,6 +6,9 @@ RuleTester.afterAll = mocha.after
 const ruleTester = new RuleTester({
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
     ecmaVersion: 6,
     sourceType: 'module',
     project: ['./tsconfig.json'],
