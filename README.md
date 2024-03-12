@@ -63,7 +63,6 @@ TODO: Run eslint-doc-generator to generate the configs list (or delete this sect
 | [no-classic-theme-colors-palette-assignment](docs/rules/no-classic-theme-colors-palette-assignment.md) | disallow directly access `theme.colors` or `theme.colors.palette` in variable assignment                                                                                       |    |
 | [prefer-direct-theme-colors-access](docs/rules/prefer-direct-theme-colors-access.md)                   | This rule ensures that theme colors are accessed directly through the theme object (e.g., theme.colors.primary) rather than via intermediary variables (e.g., colors.primary). | 🔧 |
 | [prefer-transparent-over-template](docs/rules/prefer-transparent-over-template.md)                     | Convert `${'transparent'}` to `transparent`                                                                                                                                    | 🔧 |
-| [utils](docs/rules/utils.md)                                                                           |                                                                                                                                                                                |    |
 
 <!-- end auto-generated rules list -->
 
