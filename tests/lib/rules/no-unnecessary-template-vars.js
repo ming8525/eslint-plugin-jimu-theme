@@ -18,7 +18,7 @@ ruleTester.run('no-unnecessary-template-vars.js', rule, {
     },
     {
       code: 'const style = `margin: ${\'1px\'};`',
-      output: 'const style = `margin: \'1px\';`',
+      output: 'const style = `margin: 1px;`',
       errors: [{ messageId: 'message', type: 'Literal' }]
     }
   ],
