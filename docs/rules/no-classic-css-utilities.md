@@ -10,6 +10,6 @@
 
 | Name               | Type    | Default |
 | :----------------- | :------ | :------ |
-| `removeDeprecated` | Boolean | `true`  |
+| `removeDeprecated` | Boolean | `false` |
 
 <!-- end auto-generated rule options list -->
