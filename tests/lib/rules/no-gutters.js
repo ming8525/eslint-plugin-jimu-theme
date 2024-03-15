@@ -38,5 +38,20 @@ ruleTester.run('no-gutters', rule, {
       output: 'const component = () => { return <div style={{ margin: \'10px\' }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
+    {
+      code: 'const style = `margin: ${theme?.gutters[1]};`',
+      output: 'const style = `margin: ${\'1px\'};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const component = () => { return <div style={{ margin: theme.gutters?.[1] }} /> }',
+      output: 'const component = () => { return <div style={{ margin: \'1px\' }} /> }',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const component = () => { return <div style={{ margin: gutters?.[5] }} /> }',
+      output: 'const component = () => { return <div style={{ margin: \'10px\' }} /> }',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
   ]
 })
