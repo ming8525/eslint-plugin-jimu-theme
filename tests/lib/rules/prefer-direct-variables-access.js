@@ -1,7 +1,7 @@
 const { ruleTester } = require('../utils')
-const rule = require('../../../lib/rules/prefer-direct-theme-colors-access')
+const rule = require('../../../lib/rules/prefer-direct-variables-access')
 
-ruleTester.run('prefer-direct-theme-colors-access', rule, {
+ruleTester.run('prefer-direct-variables-access', rule, {
   valid: [
     {
       code: 'const style = `border-color: ${theme.colors.primary};`'
@@ -177,6 +177,37 @@ ruleTester.run('prefer-direct-theme-colors-access', rule, {
     {
       code: 'const style = `line-height: ${typography?.lineHeights.sm};`',
       output: 'const style = `line-height: ${theme?.typography?.lineHeights.sm};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const component = () => { return <div style={{ color: props.theme.header.color }} /> }',
+      output: 'const component = () => { return <div style={{ color: theme.header.color }} /> }',
+      errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const style = `background: ${footer?.bg};`',
+      output: 'const style = `background: ${theme?.footer?.bg};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const component = () => { return <div style={{ color: props.theme.link.color }} /> }',
+      output: 'const component = () => { return <div style={{ color: theme.link.color }} /> }',
+      errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const style = `text-decoration: ${link?.hover.decoration};`',
+      output: 'const style = `text-decoration: ${theme?.link?.hover.decoration};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+
+    {
+      code: 'const component = () => { return <div style={{ color: props.theme.body.color }} /> }',
+      output: 'const component = () => { return <div style={{ color: theme.body.color }} /> }',
+      errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const style = `font-size: ${body?.fontSize};`',
+      output: 'const style = `font-size: ${theme?.body?.fontSize};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
   ],

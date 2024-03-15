@@ -39,15 +39,40 @@ Then configure the rules you want to use under the rules section.
 }
 ```
 
+## Note
 
+This plugin is only for assisting in `jimu-theme` upgrades and should not be used for other purposes.
 
-## Configurations
+The `prefer-direct-variables-access` rule is designed to standardize the usage of theme variables, such as:
 
-<!-- begin auto-generated configs list -->
-TODO: Run eslint-doc-generator to generate the configs list (or delete this section if no configs are offered).
-<!-- end auto-generated configs list -->
+```
+colors.primary => theme.colors.primary
+props.theme.colors.primary => theme.colors.primary
+palette.primary[100] => theme.colors.palette.primary[100]
+border.color => theme.border.color
+```
 
+Place it as the first rule in the ruleset.
 
+The `no-classic-*` rules are used to upgrade corresponding variables, for example:
+
+```
+theme.colors.primary => theme.sys.color.primary.main
+```
+
+In the `eslintrc`, place it after the `prefer-direct-variables-access` rule.
+
+The `no-unnecessary-template-vars` and `no-empty-classname` rules are intended to clean up abnormal code after a theme upgrade, such as:
+
+```
+color: ${'transparent'}; => color: transparent;
+<div className=''></div> => <div></div>
+```
+
+These rules need to be placed after `no-classic-*`.
+
+Furthermore, after automatic fixing, there might still be incorrect code remaining, which requires reviewing each file individually.
+We recommend autofixing files one by one rather than applying a global autofix directly.
 
 ## Rules
 
@@ -55,17 +80,24 @@ TODO: Run eslint-doc-generator to generate the configs list (or delete this sect
 
 🔧 Automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/user-guide/command-line-interface#--fix).
 
-| Name                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                | 🔧 |
-| :----------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :- |
-| [no-classic-colors](docs/rules/no-classic-colors.md)                                                   | This rule updates color variables from old classic theme to new theme.                                                                                                                                                                                                                                                                                     | 🔧 |
-| [no-classic-css-utilities](docs/rules/no-classic-css-utilities.md)                                     | This rule facilitates the upgrade of css utilities from the classic theme to the new theme.                                                                                                                                                                                                                                                                | 🔧 |
-| [no-classic-css-vars](docs/rules/no-classic-css-vars.md)                                               | This rule facilitates the transition of CSS variables representing colors from the classic theme to the new theme.                                                                                                                                                                                                                                         | 🔧 |
-| [no-classic-css-vars-style](docs/rules/no-classic-css-vars-style.md)                                   | This rule facilitates the transition of CSS variables representing colors from the classic theme to the new theme in style.                                                                                                                                                                                                                                | 🔧 |
-| [no-classic-theme-colors-palette-assignment](docs/rules/no-classic-theme-colors-palette-assignment.md) | Disallow directly access `theme.colors` or `theme.colors.palette` in variable assignment. Note: This rule is only defined to help theme variable upgrades. It should be called before other rules for upgrading the theme, and should not be used in other scenarios.                                                                                      |    |
-| [no-empty-classname](docs/rules/no-empty-classname.md)                                                 | Remove empty className attributes from React components.                                                                                                                                                                                                                                                                                                   | 🔧 |
-| [no-gutters](docs/rules/no-gutters.md)                                                                 | This rule facilitates the deprecation of gutter variables in the theme and provides automatic fixes to replace these gutter variables with specific values.                                                                                                                                                                                                | 🔧 |
-| [no-unnecessary-template-vars](docs/rules/no-unnecessary-template-vars.md)                             | Remove unnecessary template string variables. Note: If it is used for theme upgrade, this rule should be called after other rules for upgrading the theme to fix abnormal results caused by the upgrade.                                                                                                                                                   | 🔧 |
-| [prefer-direct-theme-colors-access](docs/rules/prefer-direct-theme-colors-access.md)                   | This rule ensures that theme colors are accessed directly through the theme object (e.g., theme.colors.primary) rather than via intermediary variables (e.g., colors.primary). Note: This rule is only defined to help theme variable upgrades. It should be called before other rules for upgrading the theme, and should not be used in other scenarios. | 🔧 |
+| Name                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                   | 🔧 |
+| :----------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :- |
+| [no-classic-border](docs/rules/no-classic-border.md)                                                   | This rule facilitates the deprecation of border variables in the classic theme and provides automatic fixes to replace these border variables with variables from the new theme or fallback values.                                                                                                                                                           | 🔧 |
+| [no-classic-border-radius](docs/rules/no-classic-border-radius.md)                                     | This rule facilitates the deprecation of borderRadiuses variables in the classic theme and provides automatic fixes to replace these borderRadiuses variables with variables from the new theme or fallback values.                                                                                                                                           | 🔧 |
+| [no-classic-colors](docs/rules/no-classic-colors.md)                                                   | This rule updates color variables from old classic theme to new theme.                                                                                                                                                                                                                                                                                        | 🔧 |
+| [no-classic-css-utilities](docs/rules/no-classic-css-utilities.md)                                     | This rule facilitates the upgrade of css utilities from the classic theme to the new theme.                                                                                                                                                                                                                                                                   | 🔧 |
+| [no-classic-css-vars](docs/rules/no-classic-css-vars.md)                                               | This rule facilitates the transition of CSS variables representing colors from the classic theme to the new theme.                                                                                                                                                                                                                                            | 🔧 |
+| [no-classic-css-vars-style](docs/rules/no-classic-css-vars-style.md)                                   | This rule facilitates the transition of CSS variables representing colors from the classic theme to the new theme in style.                                                                                                                                                                                                                                   | 🔧 |
+| [no-classic-elements](docs/rules/no-classic-elements.md)                                               | This rule facilitates the deprecation of elements(e.g header, footer, body, link) variables in the classic theme and provides automatic fixes to replace these elements variables with variables from the new theme or fallback values.                                                                                                                       | 🔧 |
+| [no-classic-focused-styles](docs/rules/no-classic-focused-styles.md)                                   | This rule facilitates the deprecation of `focusedStyles` variables in the classic theme and provides automatic fixes to replace these `focusedStyles` variables with variables from the new theme or fallback values.                                                                                                                                         | 🔧 |
+| [no-classic-shadow](docs/rules/no-classic-shadow.md)                                                   | This rule facilitates the deprecation of `boxShadows` variables in the classic theme and provides automatic fixes to replace these boxShadows variables with variables from the new theme.                                                                                                                                                                    | 🔧 |
+| [no-classic-sizes](docs/rules/no-classic-sizes.md)                                                     | This rule facilitates the deprecation of sizes variables in the classic theme and provides automatic fixes to replace these sizes variables with variables from the new theme.                                                                                                                                                                                | 🔧 |
+| [no-classic-theme-colors-palette-assignment](docs/rules/no-classic-theme-colors-palette-assignment.md) | Disallow directly access `theme.colors` or `theme.colors.palette` in variable assignment. Note: This rule is only defined to help theme variable upgrades. It should be called before other rules for upgrading the theme, and should not be used in other scenarios.                                                                                         |    |
+| [no-classic-typography](docs/rules/no-classic-typography.md)                                           | This rule facilitates the deprecation of typography variables in the classic theme and provides automatic fixes to replace these typography variables with variables from the new theme or fallback values.                                                                                                                                                   | 🔧 |
+| [no-empty-classname](docs/rules/no-empty-classname.md)                                                 | Remove empty className attributes from React components.                                                                                                                                                                                                                                                                                                      | 🔧 |
+| [no-gutters](docs/rules/no-gutters.md)                                                                 | This rule facilitates the deprecation of gutter variables in the theme and provides automatic fixes to replace these gutter variables with specific values.                                                                                                                                                                                                   | 🔧 |
+| [no-unnecessary-template-vars](docs/rules/no-unnecessary-template-vars.md)                             | Remove unnecessary template string variables. Note: If it is used for theme upgrade, this rule should be called after other rules for upgrading the theme to fix abnormal results caused by the upgrade.                                                                                                                                                      | 🔧 |
+| [prefer-direct-variables-access](docs/rules/prefer-direct-variables-access.md)                         | This rule ensures that theme variables are accessed directly through the theme object (e.g., theme.colors.primary) rather than via intermediary variables (e.g., colors.primary). Note: This rule is only defined to help theme variable upgrades. It should be called before other rules for upgrading the theme, and should not be used in other scenarios. | 🔧 |
 
 <!-- end auto-generated rules list -->
 
