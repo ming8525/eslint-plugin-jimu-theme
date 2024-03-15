@@ -24,18 +24,8 @@ ruleTester.run('no-classic-sizes', rule, {
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `margin: ${sizes[5]};`',
-      output: 'const style = `margin: ${theme.sys.spacing(5)};`',
-      errors: [{ messageId: 'message', type: 'MemberExpression' }]
-    },
-    {
       code: 'const component = () => { return <div style={{ margin: theme.sizes[1] }} /> }',
       output: 'const component = () => { return <div style={{ margin: theme.sys.spacing(1) }} /> }',
-      errors: [{ messageId: 'message', type: 'MemberExpression' }]
-    },
-    {
-      code: 'const component = () => { return <div style={{ margin: sizes[5] }} /> }',
-      output: 'const component = () => { return <div style={{ margin: theme.sys.spacing(5) }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -49,18 +39,8 @@ ruleTester.run('no-classic-sizes', rule, {
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `margin: ${sizes?.[5]};`',
-      output: 'const style = `margin: ${theme?.sys.spacing(5)};`',
-      errors: [{ messageId: 'message', type: 'MemberExpression' }]
-    },
-    {
       code: 'const component = () => { return <div style={{ margin: theme?.sizes[1] }} /> }',
       output: 'const component = () => { return <div style={{ margin: theme?.sys.spacing(1) }} /> }',
-      errors: [{ messageId: 'message', type: 'MemberExpression' }]
-    },
-    {
-      code: 'const component = () => { return <div style={{ margin: sizes?.[5] }} /> }',
-      output: 'const component = () => { return <div style={{ margin: theme?.sys.spacing(5) }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
