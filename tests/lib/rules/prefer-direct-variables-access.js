@@ -8,7 +8,10 @@ ruleTester.run('prefer-direct-variables-access', rule, {
     },
     {
       code: 'const style = `border-color: ${theme.colors.palette.primary[300]};`'
-    }
+    },
+    {
+      code: 'const style = `border-color: ${border?.color};`'
+    },
   ],
 
   invalid: [
@@ -117,7 +120,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
     {
       code: 'const style = `border-color: ${border?.color};`',
       output: 'const style = `border-color: ${theme?.border?.color};`',
-      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+      errors: [{ messageId: 'message', type: 'MemberExpression' }],
+      options: [{applyToBorder: true }]
     },
     {
       code: 'const component = () => { return <div style={{ outlineColor: props.theme.focusedStyles?.color }} /> }',
