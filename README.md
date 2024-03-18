@@ -43,7 +43,7 @@ Then configure the rules you want to use under the rules section.
 
 This plugin is only for assisting in `jimu-theme` upgrades and should not be used for other purposes.
 
-The `prefer-direct-variables-access` rule is designed to standardize the usage of theme variables, such as:
+The rules `prefer-direct-variables-access` and `no-classic-variables-assignment` are designed to standardize the usage of theme variables, such as:
 
 ```
 colors.primary => theme.colors.primary
