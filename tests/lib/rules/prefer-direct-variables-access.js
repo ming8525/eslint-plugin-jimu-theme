@@ -214,5 +214,27 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       output: 'const style = `font-size: ${theme?.body?.fontSize};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
+
+    {
+      code: 'const component = () => { return <div style={{ background: surfaces[1].bg }} /> }',
+      output: 'const component = () => { return <div style={{ background: theme.surfaces[1].bg }} /> }',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const style = `border-color: ${surfaces?.[1].border.color};`',
+      output: 'const style = `border-color: ${theme?.surfaces?.[1].border.color};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+
+    {
+      code: 'const component = () => { return <div style={{ background: props.theme.surfaces[1].bg }} /> }',
+      output: 'const component = () => { return <div style={{ background: theme.surfaces[1].bg }} /> }',
+      errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const style = `border-color: ${props.theme?.surfaces?.[1].border.color};`',
+      output: 'const style = `border-color: ${theme?.surfaces?.[1].border.color};`',
+      errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
+    },
   ],
 })
