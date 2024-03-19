@@ -43,7 +43,7 @@ Then configure the rules you want to use under the rules section.
 
 This plugin is only for assisting in `jimu-theme` upgrades and should not be used for other purposes.
 
-The rules `prefer-direct-variables-access` and `no-classic-variables-assignment` are designed to standardize the usage of theme variables, such as:
+The rule `prefer-direct-variables-access` is designed to standardize the usage of theme variables, such as:
 
 ```
 colors.primary => theme.colors.primary
@@ -60,16 +60,25 @@ The `no-classic-*` rules are used to upgrade corresponding variables, for exampl
 theme.colors.primary => theme.sys.color.primary.main
 ```
 
-In the `eslintrc`, place it after the `prefer-direct-variables-access` rule.
+In the `eslintrc`, place them after the `prefer-direct-variables-access` rule.
 
-The `no-unnecessary-template-vars` and `no-empty-classname` rules are intended to clean up abnormal code after a theme upgrade, such as:
+The rule `no-unnecessary-template-vars` is intended to clean up abnormal code after a theme upgrade, such as:
 
 ```
 color: ${'transparent'}; => color: transparent;
 <div className=''></div> => <div></div>
 ```
 
-These rules need to be placed after `no-classic-*`.
+
+The rule `no-classic-variables-assignment` to remind of "assigning a theme variable to an intermediate variable".
+After the automatic repair is completed, you need to check and manually delete these useless codes.
+
+```
+const colors = theme.colors
+const palette = theme.colors.palette
+```
+
+These rules `no-unnecessary-template-vars` and `no-classic-variables-assignment` need to be placed after `no-classic-*`.
 
 Furthermore, after automatic fixing, there might still be incorrect code remaining, which requires reviewing each file individually.
 We recommend autofixing files one by one rather than applying a global autofix directly.

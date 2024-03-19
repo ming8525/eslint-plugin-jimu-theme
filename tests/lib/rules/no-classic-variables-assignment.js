@@ -91,5 +91,42 @@ ruleTester.run('no-classic-variables-assignment', rule, {
       code: 'const palette = props.theme.surfaces[1]',
       errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
     },
+
+    {
+      code: 'const palette = this.props.theme?.borderRadiuses',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme.border',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme.body',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme.link',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme.focusedStyles',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme?.sizes',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme.typography',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme.surfaces',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
+    {
+      code: 'const palette = this.props.theme.surfaces[1]',
+      errors: [{ messageId: 'message', type: 'VariableDeclarator' }]
+    },
   ],
 })
