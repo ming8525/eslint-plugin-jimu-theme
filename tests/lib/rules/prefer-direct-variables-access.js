@@ -16,59 +16,59 @@ ruleTester.run('prefer-direct-variables-access', rule, {
 
   invalid: [
     {
-      code: 'const style = `border-color: ${colors.primary};`',
-      output: 'const style = `border-color: ${theme.colors.primary};`',
+      code: 'const colors = theme.colors; const style = `border-color: ${colors.primary};`',
+      output: 'const colors = theme.colors; const style = `border-color: ${theme.colors.primary};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${colors?.white};`',
-      output: 'const style = `border-color: ${theme?.colors?.white};`',
+      code: 'const colors = theme.colors; const style = `border-color: ${colors?.white};`',
+      output: 'const colors = theme.colors; const style = `border-color: ${theme?.colors?.white};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${colors?.light};`',
-      output: 'const style = `border-color: ${theme?.colors?.light};`',
+      code: 'const colors = theme.colors; const style = `border-color: ${colors?.light};`',
+      output: 'const colors = theme.colors; const style = `border-color: ${theme?.colors?.light};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${colors?.transparent};`',
-      output: 'const style = `border-color: ${theme?.colors?.transparent};`',
+      code: 'const colors = theme.colors; const style = `border-color: ${colors?.transparent};`',
+      output: 'const colors = theme.colors; const style = `border-color: ${theme?.colors?.transparent};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${colors.palette.primary[100]};`',
-      output: 'const style = `border-color: ${theme.colors.palette.primary[100]};`',
+      code: 'const colors = theme.colors; const style = `border-color: ${colors.palette.primary[100]};`',
+      output: 'const colors = theme.colors; const style = `border-color: ${theme.colors.palette.primary[100]};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${colors?.palette.danger[500]};`',
-      output: 'const style = `border-color: ${theme?.colors?.palette.danger[500]};`',
+      code: 'const colors = theme.colors; const style = `border-color: ${colors?.palette.danger[500]};`',
+      output: 'const colors = theme.colors; const style = `border-color: ${theme?.colors?.palette.danger[500]};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${colors.palette?.light[300]};`',
-      output: 'const style = `border-color: ${theme?.colors.palette?.light[300]};`',
+      code: 'const colors = theme.colors; const style = `border-color: ${colors.palette?.light[300]};`',
+      output: 'const colors = theme.colors; const style = `border-color: ${theme?.colors.palette?.light[300]};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${palette.primary[100]};`',
-      output: 'const style = `border-color: ${theme.colors.palette.primary[100]};`',
+      code: 'const palette = theme.colors.palette; const style = `border-color: ${palette.primary[100]};`',
+      output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.colors.palette.primary[100]};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${palette?.light[200]};`',
-      output: 'const style = `border-color: ${theme?.colors?.palette?.light[200]};`',
+      code: 'const palette = theme.colors.palette; const style = `border-color: ${palette?.light[200]};`',
+      output: 'const palette = theme.colors.palette; const style = `border-color: ${theme?.colors?.palette?.light[200]};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
 
     {
-      code: 'const component = () => { return <div style={{ borderColor: colors.primary }} /> }',
-      output: 'const component = () => { return <div style={{ borderColor: theme.colors.primary }} /> }',
+      code: 'const component = () => { const colors = theme.colors; return <div style={{ borderColor: colors.primary }} /> }',
+      output: 'const component = () => { const colors = theme.colors; return <div style={{ borderColor: theme.colors.primary }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const component = () => { return <div style={{ borderColor: colors.palette.primary[100] }} /> }',
-      output: 'const component = () => { return <div style={{ borderColor: theme.colors.palette.primary[100] }} /> }',
+      code: 'const component = () => { const colors = theme.colors; return <div style={{ borderColor: colors.palette.primary[100] }} /> }',
+      output: 'const component = () => { const colors = theme.colors; return <div style={{ borderColor: theme.colors.palette.primary[100] }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -92,13 +92,13 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${palette.primary[100]};`',
-      output: 'const style = `border-color: ${theme.colors.palette.primary[100]};`',
+      code: 'const palette = theme.colors.palette; const style = `border-color: ${palette.primary[100]};`',
+      output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.colors.palette.primary[100]};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const component = () => { return <div style={{ borderColor: palette?.primary[100] }} /> }',
-      output: 'const component = () => { return <div style={{ borderColor: theme?.colors?.palette?.primary[100] }} /> }',
+      code: 'const component = () => { const palette = theme.colors.palette; return <div style={{ borderColor: palette?.primary[100] }} /> }',
+      output: 'const component = () => { const palette = theme.colors.palette; return <div style={{ borderColor: theme?.colors?.palette?.primary[100] }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
 
@@ -108,8 +108,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-radius: ${borderRadiuses?.default};`',
-      output: 'const style = `border-radius: ${theme?.borderRadiuses?.default};`',
+      code: 'const borderRadiuses = theme.borderRadiuses; const style = `border-radius: ${borderRadiuses?.default};`',
+      output: 'const borderRadiuses = theme.borderRadiuses; const style = `border-radius: ${theme?.borderRadiuses?.default};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -118,10 +118,9 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${border?.color};`',
-      output: 'const style = `border-color: ${theme?.border?.color};`',
+      code: 'const border = theme.border; const style = `border-color: ${border?.color};`',
+      output: 'const border = theme.border; const style = `border-color: ${theme?.border?.color};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }],
-      options: [{applyToBorder: true }]
     },
     {
       code: 'const component = () => { return <div style={{ outlineColor: props.theme.focusedStyles?.color }} /> }',
@@ -129,8 +128,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `outline-color: ${focusedStyles?.color};`',
-      output: 'const style = `outline-color: ${theme?.focusedStyles?.color};`',
+      code: 'const focusedStyles = theme.focusedStyles; const style = `outline-color: ${focusedStyles?.color};`',
+      output: 'const focusedStyles = theme.focusedStyles; const style = `outline-color: ${theme?.focusedStyles?.color};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -139,8 +138,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `box-shadow: ${boxShadows?.sm};`',
-      output: 'const style = `box-shadow: ${theme?.boxShadows?.sm};`',
+      code: 'const boxShadows = theme.boxShadows; const style = `box-shadow: ${boxShadows?.sm};`',
+      output: 'const boxShadows = theme.boxShadows; const style = `box-shadow: ${theme?.boxShadows?.sm};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -149,8 +148,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `margin: ${sizes?.[2]};`',
-      output: 'const style = `margin: ${theme?.sizes?.[2]};`',
+      code: 'const sizes = theme.sizes; const style = `margin: ${sizes?.[2]};`',
+      output: 'const sizes = theme.sizes; const style = `margin: ${theme?.sizes?.[2]};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -159,8 +158,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `margin: ${typography?.variants.display1.color};`',
-      output: 'const style = `margin: ${theme?.typography?.variants.display1.color};`',
+      code: 'const typography = theme.typography; const style = `margin: ${typography?.variants.display1.color};`',
+      output: 'const typography = theme.typography; const style = `margin: ${theme?.typography?.variants.display1.color};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -169,8 +168,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `font-size: ${typography?.sizes.body1};`',
-      output: 'const style = `font-size: ${theme?.typography?.sizes.body1};`',
+      code: 'const typography = theme.typography; const style = `font-size: ${typography?.sizes.body1};`',
+      output: 'const typography = theme.typography; const style = `font-size: ${theme?.typography?.sizes.body1};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -179,8 +178,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `line-height: ${typography?.lineHeights.sm};`',
-      output: 'const style = `line-height: ${theme?.typography?.lineHeights.sm};`',
+      code: 'const typography = theme.typography; const style = `line-height: ${typography?.lineHeights.sm};`',
+      output: 'const typography = theme.typography; const style = `line-height: ${theme?.typography?.lineHeights.sm};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -189,8 +188,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `background: ${footer?.bg};`',
-      output: 'const style = `background: ${theme?.footer?.bg};`',
+      code: 'const footer = theme.footer; const style = `background: ${footer?.bg};`',
+      output: 'const footer = theme.footer; const style = `background: ${theme?.footer?.bg};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -199,8 +198,8 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `text-decoration: ${link?.hover.decoration};`',
-      output: 'const style = `text-decoration: ${theme?.link?.hover.decoration};`',
+      code: 'const link = theme.link; const style = `text-decoration: ${link?.hover.decoration};`',
+      output: 'const link = theme.link; const style = `text-decoration: ${theme?.link?.hover.decoration};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
 
@@ -210,19 +209,19 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `font-size: ${body?.fontSize};`',
-      output: 'const style = `font-size: ${theme?.body?.fontSize};`',
+      code: 'const body = theme.body; const style = `font-size: ${body?.fontSize};`',
+      output: 'const body = theme.body; const style = `font-size: ${theme?.body?.fontSize};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
 
     {
-      code: 'const component = () => { return <div style={{ background: surfaces[1].bg }} /> }',
-      output: 'const component = () => { return <div style={{ background: theme.surfaces[1].bg }} /> }',
+      code: 'const component = () => { const surfaces = theme.surfaces; return <div style={{ background: surfaces[1].bg }} /> }',
+      output: 'const component = () => { const surfaces = theme.surfaces; return <div style={{ background: theme.surfaces[1].bg }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${surfaces?.[1].border.color};`',
-      output: 'const style = `border-color: ${theme?.surfaces?.[1].border.color};`',
+      code: 'const surfaces = theme.surfaces; const style = `border-color: ${surfaces?.[1].border.color};`',
+      output: 'const surfaces = theme.surfaces; const style = `border-color: ${theme?.surfaces?.[1].border.color};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
 
@@ -232,9 +231,79 @@ ruleTester.run('prefer-direct-variables-access', rule, {
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `border-color: ${props.theme?.surfaces?.[1].border.color};`',
-      output: 'const style = `border-color: ${theme?.surfaces?.[1].border.color};`',
+      code: 'const surfaces = theme.surfaces; const style = `border-color: ${props.theme?.surfaces?.[1].border.color};`',
+      output: 'const surfaces = theme.surfaces; const style = `border-color: ${theme?.surfaces?.[1].border.color};`',
       errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const component = () => { const colors = props.theme.colors; return <div style={{ borderColor: colors.primary }} /> }',
+      output: 'const component = () => { const colors = props.theme.colors; return <div style={{ borderColor: theme.colors.primary }} /> }',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const colors = props.theme.colors; const style = `border-color: ${colors.primary};`',
+      output: 'const colors = props.theme.colors; const style = `border-color: ${theme.colors.primary};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const palette = props.theme.colors.palette; const style = `border-color: ${palette.primary[100]};`',
+      output: 'const palette = props.theme.colors.palette; const style = `border-color: ${theme.colors.palette.primary[100]};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const surfaces = props.theme.surfaces; const style = `border-color: ${props.theme?.surfaces?.[1].border.color};`',
+      output: 'const surfaces = props.theme.surfaces; const style = `border-color: ${theme?.surfaces?.[1].border.color};`',
+      errors: [{ messageId: 'noUsedFromProps', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const body = props.theme.body; const style = `font-size: ${body?.fontSize};`',
+      output: 'const body = props.theme.body; const style = `font-size: ${theme?.body?.fontSize};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const link = props.theme.link; const style = `text-decoration: ${link?.hover.decoration};`',
+      output: 'const link = props.theme.link; const style = `text-decoration: ${theme?.link?.hover.decoration};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const footer = props.theme.footer; const style = `background: ${footer?.bg};`',
+      output: 'const footer = props.theme.footer; const style = `background: ${theme?.footer?.bg};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const header = props.theme.header; const style = `background: ${header?.bg};`',
+      output: 'const header = props.theme.header; const style = `background: ${theme?.header?.bg};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const typography = props.theme.typography; const style = `margin: ${typography?.variants.display1.color};`',
+      output: 'const typography = props.theme.typography; const style = `margin: ${theme?.typography?.variants.display1.color};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const focusedStyles = props.theme.focusedStyles; const style = `outline-color: ${focusedStyles?.color};`',
+      output: 'const focusedStyles = props.theme.focusedStyles; const style = `outline-color: ${theme?.focusedStyles?.color};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const sizes = props.theme.sizes; const style = `margin: ${sizes?.[2]};`',
+      output: 'const sizes = props.theme.sizes; const style = `margin: ${theme?.sizes?.[2]};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const boxShadows = props.theme.boxShadows; const style = `box-shadow: ${boxShadows?.sm};`',
+      output: 'const boxShadows = props.theme.boxShadows; const style = `box-shadow: ${theme?.boxShadows?.sm};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+    {
+      code: 'const border = props.theme.border; const style = `border-color: ${border?.color};`',
+      output: 'const border = props.theme.border; const style = `border-color: ${theme?.border?.color};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }],
+    },
+    {
+      code: 'const borderRadiuses = props.theme.borderRadiuses; const style = `border-radius: ${borderRadiuses?.default};`',
+      output: 'const borderRadiuses = props.theme.borderRadiuses; const style = `border-radius: ${theme?.borderRadiuses?.default};`',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
   ],
 })
