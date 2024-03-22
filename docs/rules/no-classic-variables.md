@@ -1,4 +1,4 @@
-# Remove empty className attributes from React components.  (`jimu-theme/no-empty-classname`)
+# This rule updates color variables from old classic theme to new theme (`jimu-theme/no-classic-variables`)
 
 🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
 
