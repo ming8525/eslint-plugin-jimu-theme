@@ -50,18 +50,20 @@ The `no-classic-*` rules are used to upgrade corresponding variables, for exampl
 theme.colors.primary => theme.sys.color.primary.main
 ```
 
-Rule `no-classic-variables` contains all other rules prefixed with `no-classic` (except rule `no-classic-css-utilities`,  `no-classic-css-vars`,  `no-classic-css-vars-style`), so you can choose to replace them with rule `no-classic-variables`.
+Rule `no-classic-variables` contains all other rules prefixed with `no-classic` (except rule `no-classic-css-utilities`,  `no-classic-css-vars`), so you can choose to replace them with rule `no-classic-variables`.
 
 The rule `no-unnecessary-template-vars` is intended to clean up abnormal code after a theme upgrade, such as:
 
 ```
-color: ${'transparent'}; => color: transparent;
-<div className=''></div> => <div></div>
+~~const style = `color: ${'transparent'};`~~
+
+const style = `color: transparent;`
 ```
 
-These rule `no-unnecessary-template-vars` need to be placed after `no-classic-*`.
+The rule `no-unnecessary-template-vars` need to be placed after `no-classic-*`.
 
 Furthermore, after automatic fixing, there might still be incorrect code remaining, which requires reviewing each file individually.
+
 For example:
 
 Before fixing:
@@ -92,7 +94,6 @@ We recommend autofixing files one by one rather than applying a global autofix d
 | [no-classic-colors](docs/rules/no-classic-colors.md)                       | This rule updates color variables from old classic theme to new theme.                                                                                                                                                                  | 🔧 |
 | [no-classic-css-utilities](docs/rules/no-classic-css-utilities.md)         | This rule facilitates the upgrade of css utilities from the classic theme to the new theme.                                                                                                                                             | 🔧 |
 | [no-classic-css-vars](docs/rules/no-classic-css-vars.md)                   | This rule facilitates the transition of CSS variables representing colors from the classic theme to the new theme.                                                                                                                      | 🔧 |
-| [no-classic-css-vars-style](docs/rules/no-classic-css-vars-style.md)       | This rule facilitates the transition of CSS variables representing colors from the classic theme to the new theme in style.                                                                                                             | 🔧 |
 | [no-classic-dark-theme](docs/rules/no-classic-dark-theme.md)               | This rule facilitates the deprecation of `darkTheme` variables in the classic theme and provides automatic fixes to replace it with variables from the new theme.                                                                       | 🔧 |
 | [no-classic-elements](docs/rules/no-classic-elements.md)                   | This rule facilitates the deprecation of elements(e.g header, footer, body, link) variables in the classic theme and provides automatic fixes to replace these elements variables with variables from the new theme or fallback values. | 🔧 |
 | [no-classic-focused-styles](docs/rules/no-classic-focused-styles.md)       | This rule facilitates the deprecation of `focusedStyles` variables in the classic theme and provides automatic fixes to replace these `focusedStyles` variables with variables from the new theme or fallback values.                   | 🔧 |
