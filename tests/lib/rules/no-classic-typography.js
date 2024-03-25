@@ -350,6 +350,38 @@ const invalidTests = [
     code: 'const component = () => { const variants = theme.typography.variants; return <div style={variants?.caption2} /> }',
     output: 'const component = () => { const variants = theme.typography.variants; return <div style={theme.sys.typography?.label3} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `font-family: ${theme.typography?.fontFamilyBase};`',
+    output: 'const style = `font-family: ${theme.ref.typeface?.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-size: ${theme.typography?.fontSizeRoot};`',
+    output: 'const style = `font-size: ${theme.ref.typeface?.htmlFontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-size: ${theme.typography?.fontSizeBase};`',
+    output: 'const style = `font-size: ${theme.ref.typeface?.fontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const typography = theme.typography; const style = `font-family: ${typography?.fontFamilyBase};`',
+    output: 'const typography = theme.typography; const style = `font-family: ${theme.ref.typeface?.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const typography = theme.typography; return <div style={{fontSize: typography.fontSizeRoot}} /> }',
+    output: 'const component = () => { const typography = theme.typography; return <div style={{fontSize: theme.ref.typeface.htmlFontSize}} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const typography = theme.typography; return <div style={{fontSize: typography?.fontSizeBase}} /> }',
+    output: 'const component = () => { const typography = theme.typography; return <div style={{fontSize: theme.ref.typeface?.fontSize}} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
   }
 ]
 
