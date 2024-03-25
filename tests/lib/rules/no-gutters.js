@@ -24,8 +24,8 @@ ruleTester.run('no-gutters', rule, {
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const style = `margin: ${gutters[5]};`',
-      output: 'const style = `margin: ${\'10px\'};`',
+      code: 'const gutters= theme.gutters; const style = `margin: ${gutters[5]};`',
+      output: 'const gutters= theme.gutters; const style = `margin: ${\'10px\'};`',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -34,8 +34,8 @@ ruleTester.run('no-gutters', rule, {
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const component = () => { return <div style={{ margin: gutters[5] }} /> }',
-      output: 'const component = () => { return <div style={{ margin: \'10px\' }} /> }',
+      code: 'const component = () => { const gutters= theme.gutters; return <div style={{ margin: gutters[5] }} /> }',
+      output: 'const component = () => { const gutters= theme.gutters; return <div style={{ margin: \'10px\' }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
@@ -49,8 +49,8 @@ ruleTester.run('no-gutters', rule, {
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
     {
-      code: 'const component = () => { return <div style={{ margin: gutters?.[5] }} /> }',
-      output: 'const component = () => { return <div style={{ margin: \'10px\' }} /> }',
+      code: 'const component = () => { const gutters= theme.gutters; return <div style={{ margin: gutters?.[5] }} /> }',
+      output: 'const component = () => { const gutters= theme.gutters; return <div style={{ margin: \'10px\' }} /> }',
       errors: [{ messageId: 'message', type: 'MemberExpression' }]
     },
   ]
