@@ -1068,7 +1068,17 @@ const invalidTests = [
     output: 'const component = () => { const { orgSharedColors } = theme.colors; return <div style={{ border: `1px solid ${theme.mixin.sharedTheme.button.bg}` }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
-  
+  {
+    code: 'const { theme } = this.context; const style = `border-color: ${theme.colors.primary};`',
+    output: 'const { theme } = this.context; const style = `border-color: ${theme.sys.color.primary.main};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const { exbTheme } = params; return <div style={{ border: `1px solid ${exbTheme.colors.primary}` }} /> }',
+    output: 'const component = () => { const { exbTheme } = params; return <div style={{ border: `1px solid ${exbTheme.sys.color.primary.main}` }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }],
+    options: [{ themeAliases: ['exbTheme']}]
+  },
 ]
 
 ruleTester.run('no-classic-colors', rule, {
