@@ -15,44 +15,44 @@ ruleTester.run('no-classic-css-utilities', rule, {
   invalid: [
     {
       code: 'const component = () => { return <div className=\'foo text-primary\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }]
+      errors: [{ messageId: 'removed', type: 'Literal' }]
     },
     {
       code: 'const component = () => { return <div className=\'foo text-primary bar\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }]
+      errors: [{ messageId: 'removed', type: 'Literal' }]
     },
     {
       code: 'const component = () => { return <div className=\'text-primary foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }]
+      errors: [{ messageId: 'removed', type: 'Literal' }]
     },
     {
       code: 'const component = () => { return <div className=\'text-primary foo bar\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }]
+      errors: [{ messageId: 'removed', type: 'Literal' }]
     },
     {
       code: 'const component = () => { return <div className=\'text-primary\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }]
+      errors: [{ messageId: 'removed', type: 'Literal' }]
     },
 
     {
       code: 'const component = () => { return <div className=\'text-primary foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-secondary foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-success foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-info foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-warning foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-danger foo\' /> }',
@@ -60,7 +60,7 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'text-white foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-black foo\' /> }',
@@ -69,11 +69,11 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'text-transparent foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark foo\' /> }',
@@ -94,15 +94,15 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'bg-info foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-warning foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-danger foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-white foo\' /> }',
@@ -111,7 +111,7 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'bg-black foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-transparent foo\' /> }',
@@ -124,43 +124,43 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-primary foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-secondary foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-success foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-info foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-warning foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-danger foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-white foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-black foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-transparent foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light foo\' /> }',
@@ -169,56 +169,56 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'border-dark foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
 
     {
       code: 'const component = () => { return <div className=\'text-light-100 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-200 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-300 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-400 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-500 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-600 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-700 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-800 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-light-900 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-100 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-200 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-300 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-400 foo\' /> }',
@@ -227,7 +227,7 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-500 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-600 foo\' /> }',
@@ -236,23 +236,23 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-700 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-800 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'text-dark-900 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-100 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-200 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-300 foo\' /> }',
@@ -261,79 +261,79 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-400 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-500 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-600 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-700 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-800 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-light-900 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-100 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-200 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-300 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-400 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-500 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-600 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-700 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-800 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'bg-dark-900 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light-100 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light-200 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light-300 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light-400 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light-500 foo\' /> }',
@@ -342,11 +342,11 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'border-light-600 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light-700 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-light-800 foo\' /> }',
@@ -355,43 +355,43 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
     {
       code: 'const component = () => { return <div className=\'border-light-900 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-100 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-200 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-300 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-400 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-500 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-600 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-700 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-800 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     },
     {
       code: 'const component = () => { return <div className=\'border-dark-900 foo\' /> }',
-      errors: [{ messageId: 'deprecated', type: 'Literal' }],
+      errors: [{ messageId: 'removed', type: 'Literal' }],
     }
   ],
 })
