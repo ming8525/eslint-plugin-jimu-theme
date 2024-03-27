@@ -259,6 +259,120 @@ const invalidTests = [
     output: 'const component = () => { const borderRadiuses = theme.borderRadiuses; return <div style={{ borderRadius: \'0px\' }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
+
+  {
+    code: 'const style = `border-radius: ${theme2.borderRadiuses.default};`',
+    output: 'const style = `border-radius: ${theme2.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderRadius: theme2.borderRadiuses.default }} /> }',
+    output: 'const component = () => { return <div style={{ borderRadius: theme2.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-radius: ${props.theme2.borderRadiuses.default};`',
+    output: 'const style = `border-radius: ${props.theme2.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderRadius: props.theme2.borderRadiuses.default }} /> }',
+    output: 'const component = () => { return <div style={{ borderRadius: props.theme2.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const borderRadiuses = theme2.borderRadiuses; const style = `border-radius: ${borderRadiuses.default};`',
+    output: 'const borderRadiuses = theme2.borderRadiuses; const style = `border-radius: ${theme2.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const borderRadiuses = theme2.borderRadiuses; return <div style={{ borderRadius: borderRadiuses.default }} /> }',
+    output: 'const component = () => { const borderRadiuses = theme2.borderRadiuses; return <div style={{ borderRadius: theme2.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `border-radius: ${builderTheme.borderRadiuses.default};`',
+    output: 'const style = `border-radius: ${builderTheme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderRadius: builderTheme.borderRadiuses.default }} /> }',
+    output: 'const component = () => { return <div style={{ borderRadius: builderTheme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-radius: ${props.builderTheme.borderRadiuses.default};`',
+    output: 'const style = `border-radius: ${props.builderTheme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderRadius: props.builderTheme.borderRadiuses.default }} /> }',
+    output: 'const component = () => { return <div style={{ borderRadius: props.builderTheme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const borderRadiuses = builderTheme.borderRadiuses; const style = `border-radius: ${borderRadiuses.default};`',
+    output: 'const borderRadiuses = builderTheme.borderRadiuses; const style = `border-radius: ${builderTheme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const borderRadiuses = builderTheme.borderRadiuses; return <div style={{ borderRadius: borderRadiuses.default }} /> }',
+    output: 'const component = () => { const borderRadiuses = builderTheme.borderRadiuses; return <div style={{ borderRadius: builderTheme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `border-radius: ${appTheme.borderRadiuses.default};`',
+    output: 'const style = `border-radius: ${appTheme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderRadius: appTheme.borderRadiuses.default }} /> }',
+    output: 'const component = () => { return <div style={{ borderRadius: appTheme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-radius: ${props.appTheme.borderRadiuses.default};`',
+    output: 'const style = `border-radius: ${props.appTheme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderRadius: props.appTheme.borderRadiuses.default }} /> }',
+    output: 'const component = () => { return <div style={{ borderRadius: props.appTheme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const borderRadiuses = appTheme.borderRadiuses; const style = `border-radius: ${borderRadiuses.default};`',
+    output: 'const borderRadiuses = appTheme.borderRadiuses; const style = `border-radius: ${appTheme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const borderRadiuses = appTheme.borderRadiuses; return <div style={{ borderRadius: borderRadiuses.default }} /> }',
+    output: 'const component = () => { const borderRadiuses = appTheme.borderRadiuses; return <div style={{ borderRadius: appTheme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `border-radius: ${this.theme.borderRadiuses.default};`',
+    output: 'const style = `border-radius: ${this.theme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderRadius: this.theme.borderRadiuses.default }} /> }',
+    output: 'const component = () => { return <div style={{ borderRadius: this.theme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const borderRadiuses = this.theme.borderRadiuses; const style = `border-radius: ${borderRadiuses.default};`',
+    output: 'const borderRadiuses = this.theme.borderRadiuses; const style = `border-radius: ${theme.sys.shape.shape1};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const borderRadiuses = this.theme.borderRadiuses; return <div style={{ borderRadius: borderRadiuses.default }} /> }',
+    output: 'const component = () => { const borderRadiuses = this.theme.borderRadiuses; return <div style={{ borderRadius: theme.sys.shape.shape1 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
 ]
 
 ruleTester.run('no-classic-border-radius', rule, {

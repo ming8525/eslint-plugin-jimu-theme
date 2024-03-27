@@ -294,6 +294,84 @@ const invalidTests = [
     code: 'const body = theme.body; const style = `color: ${body?.fontFamily};`',
     output: 'const body = theme.body; const style = `color: ${theme.sys.typography.body2?.fontFamily};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `color: ${theme2.header.color};`',
+    output: 'const style = `color: ${theme2.comp.Header.root.vars.color};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `color: ${theme2?.link.color};`',
+    output: 'const style = `color: ${theme2?.sys.color.action.link.default};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const link = theme2.link; const style = `color: ${link?.color};`',
+    output: 'const link = theme2.link; const style = `color: ${theme2.sys.color.action.link?.default};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const link = theme2.link; const style = `color: ${link?.hover.color};`',
+    output: 'const link = theme2.link; const style = `color: ${theme2.sys.color.action.link?.hover};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const body = theme2.body; const style = `color: ${body?.fontFamily};`',
+    output: 'const body = theme2.body; const style = `color: ${theme2.sys.typography.body2?.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `color: ${builderTheme.header.color};`',
+    output: 'const style = `color: ${builderTheme.comp.Header.root.vars.color};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `color: ${builderTheme?.link.color};`',
+    output: 'const style = `color: ${builderTheme?.sys.color.action.link.default};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const link = builderTheme.link; const style = `color: ${link?.color};`',
+    output: 'const link = builderTheme.link; const style = `color: ${builderTheme.sys.color.action.link?.default};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const link = builderTheme.link; const style = `color: ${link?.hover.color};`',
+    output: 'const link = builderTheme.link; const style = `color: ${builderTheme.sys.color.action.link?.hover};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const body = builderTheme.body; const style = `color: ${body?.fontFamily};`',
+    output: 'const body = builderTheme.body; const style = `color: ${builderTheme.sys.typography.body2?.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `color: ${this.theme.header.color};`',
+    output: 'const style = `color: ${this.theme.comp.Header.root.vars.color};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `color: ${this.theme?.link.color};`',
+    output: 'const style = `color: ${this.theme?.sys.color.action.link.default};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const link = this.theme.link; const style = `color: ${link?.color};`',
+    output: 'const link = this.theme.link; const style = `color: ${theme.sys.color.action.link?.default};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const link = this.theme.link; const style = `color: ${link?.hover.color};`',
+    output: 'const link = this.theme.link; const style = `color: ${theme.sys.color.action.link?.hover};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const body = this.theme.body; const style = `color: ${body?.fontFamily};`',
+    output: 'const body = this.theme.body; const style = `color: ${theme.sys.typography.body2?.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
   }
 ]
 

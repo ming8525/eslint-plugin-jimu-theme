@@ -259,6 +259,69 @@ const invalidTests = [
     output: 'const component = () => { const boxShadows = theme.boxShadows; return <div style={{ boxShadow: theme.sys.shadow?.shadow1 }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
+
+  {
+    code: 'const style = `box-shadow: ${theme2.boxShadows.lg};`',
+    output: 'const style = `box-shadow: ${theme2.sys.shadow.shadow3};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ boxShadow: theme2.boxShadows.default }} /> }',
+    output: 'const component = () => { return <div style={{ boxShadow: theme2.sys.shadow.shadow2 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const boxShadows = theme2.boxShadows; const style = `box-shadow: ${boxShadows.default};`',
+    output: 'const boxShadows = theme2.boxShadows; const style = `box-shadow: ${theme2.sys.shadow.shadow2};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const boxShadows = theme2.boxShadows; return <div style={{ boxShadow: boxShadows.default }} /> }',
+    output: 'const component = () => { const boxShadows = theme2.boxShadows; return <div style={{ boxShadow: theme2.sys.shadow.shadow2 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `box-shadow: ${builderTheme.boxShadows.lg};`',
+    output: 'const style = `box-shadow: ${builderTheme.sys.shadow.shadow3};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ boxShadow: builderTheme.boxShadows.default }} /> }',
+    output: 'const component = () => { return <div style={{ boxShadow: builderTheme.sys.shadow.shadow2 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const boxShadows = builderTheme.boxShadows; const style = `box-shadow: ${boxShadows.default};`',
+    output: 'const boxShadows = builderTheme.boxShadows; const style = `box-shadow: ${builderTheme.sys.shadow.shadow2};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const boxShadows = builderTheme.boxShadows; return <div style={{ boxShadow: boxShadows.default }} /> }',
+    output: 'const component = () => { const boxShadows = builderTheme.boxShadows; return <div style={{ boxShadow: builderTheme.sys.shadow.shadow2 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `box-shadow: ${this.theme.boxShadows.lg};`',
+    output: 'const style = `box-shadow: ${this.theme.sys.shadow.shadow3};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ boxShadow: this.theme.boxShadows.default }} /> }',
+    output: 'const component = () => { return <div style={{ boxShadow: this.theme.sys.shadow.shadow2 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const boxShadows = this.theme.boxShadows; const style = `box-shadow: ${boxShadows.default};`',
+    output: 'const boxShadows = this.theme.boxShadows; const style = `box-shadow: ${theme.sys.shadow.shadow2};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const boxShadows = this.theme.boxShadows; return <div style={{ boxShadow: boxShadows.default }} /> }',
+    output: 'const component = () => { const boxShadows = this.theme.boxShadows; return <div style={{ boxShadow: theme.sys.shadow.shadow2 }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  }
 ]
 
 

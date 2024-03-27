@@ -133,6 +133,101 @@ const invalidTests = [
     output: 'const component = () => { const border = theme.border; return <div style={{ border: `${\'1px\'} ${\'solid\'} ${theme.sys.color.divider.primary}` }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
   },
+
+  {
+    code: 'const style = `border: ${theme2.border.width} ${theme2.border.type} ${theme2.border.color};`',
+    output: 'const style = `border: ${\'1px\'} ${\'solid\'} ${theme2.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-color: ${theme2.border.color};`',
+    output: 'const style = `border-color: ${theme2.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `border: ${props.theme2.border.width} ${props.theme2.border.type} ${props.theme2.border.color};`',
+    output: 'const style = `border: ${\'1px\'} ${\'solid\'} ${props.theme2.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-color: ${props.theme2.border.color};`',
+    output: 'const style = `border-color: ${props.theme2.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderStyle: props.theme2.border.type }} /> }',
+    output: 'const component = () => { return <div style={{ borderStyle: \'solid\' }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const border = theme2.border; const style = `border: ${border.width} ${border.type} ${border.color};`',
+    output: 'const border = theme2.border; const style = `border: ${\'1px\'} ${\'solid\'} ${theme2.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const border = theme2.border; const style = `border-color: ${border.color};`',
+    output: 'const border = theme2.border; const style = `border-color: ${theme2.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `border: ${builderTheme.border.width} ${builderTheme.border.type} ${builderTheme.border.color};`',
+    output: 'const style = `border: ${\'1px\'} ${\'solid\'} ${builderTheme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-color: ${builderTheme.border.color};`',
+    output: 'const style = `border-color: ${builderTheme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `border: ${props.builderTheme.border.width} ${props.builderTheme.border.type} ${props.builderTheme.border.color};`',
+    output: 'const style = `border: ${\'1px\'} ${\'solid\'} ${props.builderTheme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-color: ${props.builderTheme.border.color};`',
+    output: 'const style = `border-color: ${props.builderTheme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ borderStyle: props.builderTheme.border.type }} /> }',
+    output: 'const component = () => { return <div style={{ borderStyle: \'solid\' }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const border = builderTheme.border; const style = `border: ${border.width} ${border.type} ${border.color};`',
+    output: 'const border = builderTheme.border; const style = `border: ${\'1px\'} ${\'solid\'} ${builderTheme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const border = builderTheme.border; const style = `border-color: ${border.color};`',
+    output: 'const border = builderTheme.border; const style = `border-color: ${builderTheme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `border: ${this.theme.border.width} ${this.theme.border.type} ${this.theme.border.color};`',
+    output: 'const style = `border: ${\'1px\'} ${\'solid\'} ${this.theme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `border-color: ${this.theme.border.color};`',
+    output: 'const style = `border-color: ${this.theme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const border = this.theme.border; const style = `border: ${border.width} ${border.type} ${border.color};`',
+    output: 'const border = this.theme.border; const style = `border: ${\'1px\'} ${\'solid\'} ${theme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const border = this.theme.border; const style = `border-color: ${border.color};`',
+    output: 'const border = this.theme.border; const style = `border-color: ${theme.sys.color.divider.primary};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
 ]
 
 ruleTester.run('no-classic-border', rule, {

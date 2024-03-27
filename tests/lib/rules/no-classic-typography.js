@@ -382,7 +382,116 @@ const invalidTests = [
     code: 'const component = () => { const typography = theme.typography; return <div style={{fontSize: typography?.fontSizeBase}} /> }',
     output: 'const component = () => { const typography = theme.typography; return <div style={{fontSize: theme.ref.typeface?.fontSize}} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  }
+  },
+
+  {
+    code: 'const style = `font-size: ${theme2.typography.sizes.display2};`',
+    output: 'const style = `font-size: ${theme2.sys.typography.h2.fontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ fontSize: theme2?.typography.sizes.display2 }} /> }',
+    output: 'const component = () => { return <div style={{ fontSize: theme2?.sys.typography.h2.fontSize }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-family: ${theme2.typography.variants.caption1.fontFamily};`',
+    output: 'const style = `font-family: ${theme2.sys.typography.label2.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-size: ${theme2.typography.variants?.caption2};`',
+    output: 'const style = `font-size: ${theme2.sys.typography?.label3};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const typography = theme2.typography; return <div style={{ fontWeight: typography.weights.bold }} /> }',
+    output: 'const component = () => { const typography = theme2.typography; return <div style={{ fontWeight: theme2.ref.typeface.fontWeightMedium }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const typography = theme2.typography; const style = `font-family: ${typography.variants.caption1.fontFamily};`',
+    output: 'const typography = theme2.typography; const style = `font-family: ${theme2.sys.typography.label2.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const sizes = theme2.typography.sizes; const style = `font-size: ${sizes.display2};`',
+    output: 'const sizes = theme2.typography.sizes; const style = `font-size: ${theme2.sys.typography.h2.fontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `font-size: ${builderTheme.typography.sizes.display2};`',
+    output: 'const style = `font-size: ${builderTheme.sys.typography.h2.fontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ fontSize: builderTheme?.typography.sizes.display2 }} /> }',
+    output: 'const component = () => { return <div style={{ fontSize: builderTheme?.sys.typography.h2.fontSize }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-family: ${builderTheme.typography.variants.caption1.fontFamily};`',
+    output: 'const style = `font-family: ${builderTheme.sys.typography.label2.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-size: ${builderTheme.typography.variants?.caption2};`',
+    output: 'const style = `font-size: ${builderTheme.sys.typography?.label3};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const typography = builderTheme.typography; return <div style={{ fontWeight: typography.weights.bold }} /> }',
+    output: 'const component = () => { const typography = builderTheme.typography; return <div style={{ fontWeight: builderTheme.ref.typeface.fontWeightMedium }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const typography = builderTheme.typography; const style = `font-family: ${typography.variants.caption1.fontFamily};`',
+    output: 'const typography = builderTheme.typography; const style = `font-family: ${builderTheme.sys.typography.label2.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const sizes = builderTheme.typography.sizes; const style = `font-size: ${sizes.display2};`',
+    output: 'const sizes = builderTheme.typography.sizes; const style = `font-size: ${builderTheme.sys.typography.h2.fontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `font-size: ${this.theme.typography.sizes.display2};`',
+    output: 'const style = `font-size: ${this.theme.sys.typography.h2.fontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ fontSize: this.theme?.typography.sizes.display2 }} /> }',
+    output: 'const component = () => { return <div style={{ fontSize: this.theme?.sys.typography.h2.fontSize }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-family: ${this.theme.typography.variants.caption1.fontFamily};`',
+    output: 'const style = `font-family: ${this.theme.sys.typography.label2.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const style = `font-size: ${this.theme.typography.variants?.caption2};`',
+    output: 'const style = `font-size: ${this.theme.sys.typography?.label3};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const typography = this.theme.typography; return <div style={{ fontWeight: typography.weights.bold }} /> }',
+    output: 'const component = () => { const typography = this.theme.typography; return <div style={{ fontWeight: theme.ref.typeface.fontWeightMedium }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const typography = this.theme.typography; const style = `font-family: ${typography.variants.caption1.fontFamily};`',
+    output: 'const typography = this.theme.typography; const style = `font-family: ${theme.sys.typography.label2.fontFamily};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const sizes = this.theme.typography.sizes; const style = `font-size: ${sizes.display2};`',
+    output: 'const sizes = this.theme.typography.sizes; const style = `font-size: ${theme.sys.typography.h2.fontSize};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
 ]
 
 

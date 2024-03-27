@@ -118,6 +118,69 @@ const invalidTests = [
     output: 'const component = () => { const focusedStyles = theme.focusedStyles; return <div style={{ outline: `${\'2px\'} solid ${theme?.sys.color.action.focus}` }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
   },
+
+  {
+    code: 'const style = `outline: ${theme2.focusedStyles.width} solid ${theme2.focusedStyles.color};`',
+    output: 'const style = `outline: ${\'2px\'} solid ${theme2.sys.color.action.focus};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ outline: `${theme2.focusedStyles.width} solid ${theme2.focusedStyles.color}` }} /> }',
+    output: 'const component = () => { return <div style={{ outline: `${\'2px\'} solid ${theme2.sys.color.action.focus}` }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const focusedStyles = theme2.focusedStyles; const style = `outline: ${focusedStyles.width} solid ${focusedStyles.color};`',
+    output: 'const focusedStyles = theme2.focusedStyles; const style = `outline: ${\'2px\'} solid ${theme2.sys.color.action.focus};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const focusedStyles = theme2.focusedStyles; return <div style={{ outline: `${focusedStyles.width} solid ${focusedStyles.color}` }} /> }',
+    output: 'const component = () => { const focusedStyles = theme2.focusedStyles; return <div style={{ outline: `${\'2px\'} solid ${theme2.sys.color.action.focus}` }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `outline: ${builderTheme.focusedStyles.width} solid ${builderTheme.focusedStyles.color};`',
+    output: 'const style = `outline: ${\'2px\'} solid ${builderTheme.sys.color.action.focus};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ outline: `${builderTheme.focusedStyles.width} solid ${builderTheme.focusedStyles.color}` }} /> }',
+    output: 'const component = () => { return <div style={{ outline: `${\'2px\'} solid ${builderTheme.sys.color.action.focus}` }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const focusedStyles = builderTheme.focusedStyles; const style = `outline: ${focusedStyles.width} solid ${focusedStyles.color};`',
+    output: 'const focusedStyles = builderTheme.focusedStyles; const style = `outline: ${\'2px\'} solid ${builderTheme.sys.color.action.focus};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const focusedStyles = builderTheme.focusedStyles; return <div style={{ outline: `${focusedStyles.width} solid ${focusedStyles.color}` }} /> }',
+    output: 'const component = () => { const focusedStyles = builderTheme.focusedStyles; return <div style={{ outline: `${\'2px\'} solid ${builderTheme.sys.color.action.focus}` }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `outline: ${this.theme.focusedStyles.width} solid ${this.theme.focusedStyles.color};`',
+    output: 'const style = `outline: ${\'2px\'} solid ${this.theme.sys.color.action.focus};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ outline: `${this.theme.focusedStyles.width} solid ${this.theme.focusedStyles.color}` }} /> }',
+    output: 'const component = () => { return <div style={{ outline: `${\'2px\'} solid ${this.theme.sys.color.action.focus}` }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const focusedStyles = this.theme.focusedStyles; const style = `outline: ${focusedStyles.width} solid ${focusedStyles.color};`',
+    output: 'const focusedStyles = this.theme.focusedStyles; const style = `outline: ${\'2px\'} solid ${theme.sys.color.action.focus};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const focusedStyles = this.theme.focusedStyles; return <div style={{ outline: `${focusedStyles.width} solid ${focusedStyles.color}` }} /> }',
+    output: 'const component = () => { const focusedStyles = this.theme.focusedStyles; return <div style={{ outline: `${\'2px\'} solid ${theme.sys.color.action.focus}` }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
 ]
 
 

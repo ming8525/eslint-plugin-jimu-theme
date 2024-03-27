@@ -152,15 +152,48 @@ const invalidTests = [
   {
     code: 'const surfaces = theme.surfaces; const style = surfaces?.[2];',
     output: `const surfaces = theme.surfaces; const style = {
-    bg: theme.sys.color.surface.overlay,
-    border: {
-      color: theme.sys.color.divider.secondary,
-      width: '1px'
-    },
-    shadow: theme.sys.shadow.shadow2
-  };`,
+      bg: theme.sys.color.surface.overlay,
+      border: {
+        color: theme.sys.color.divider.secondary,
+        width: '1px'
+      },
+      shadow: theme.sys.shadow.shadow2
+    };`,
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
+
+  {
+    code: 'const style = `background: ${theme2.surfaces[1].bg};`',
+    output: 'const style = `background: ${theme2.sys.color.surface.paper};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const surfaces = theme2.surfaces; const style = `boxShadow: ${surfaces[2].shadow};`',
+    output: 'const surfaces = theme2.surfaces; const style = `boxShadow: ${theme2.sys.shadow.shadow2};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `background: ${builderTheme.surfaces[1].bg};`',
+    output: 'const style = `background: ${builderTheme.sys.color.surface.paper};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const surfaces = builderTheme.surfaces; const style = `boxShadow: ${surfaces[2].shadow};`',
+    output: 'const surfaces = builderTheme.surfaces; const style = `boxShadow: ${builderTheme.sys.shadow.shadow2};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+
+  {
+    code: 'const style = `background: ${this.theme.surfaces[1].bg};`',
+    output: 'const style = `background: ${this.theme.sys.color.surface.paper};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const surfaces = this.theme.surfaces; const style = `boxShadow: ${surfaces[2].shadow};`',
+    output: 'const surfaces = this.theme.surfaces; const style = `boxShadow: ${theme.sys.shadow.shadow2};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  }
 ]
 
 
