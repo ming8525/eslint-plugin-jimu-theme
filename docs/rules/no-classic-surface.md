@@ -8,9 +8,9 @@
 
 <!-- begin auto-generated rule options list -->
 
-| Name            | Description                                                                                                                                           | Type     | Default                                                     |
-| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- | :---------------------------------------------------------- |
-| `preThemeProps` |                                                                                                                                                       | String[] | [`this`, `this,props,prevProps,pageContext`]                |
-| `themeAliases`  | The plug-in determines whether a variable is a theme variable based on the "theme" keyword. If you use another name, define it through this property. | String[] | [`theme`, `theme2`, `exbTheme`, `builderTheme`, `appTheme`] |
+| Name            | Description                                                                                                                                           | Type     | Default                                                   |
+| :-------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- | :-------------------------------------------------------- |
+| `preThemeProps` |                                                                                                                                                       | Array    | [`this`, `['this', 'props', 'prevProps', 'pageContext']`] |
+| `themeAliases`  | The plug-in determines whether a variable is a theme variable based on the "theme" keyword. If you use another name, define it through this property. | String[] | [`theme`, `theme2`, `builderTheme`, `appTheme`]           |
 
 <!-- end auto-generated rule options list -->
