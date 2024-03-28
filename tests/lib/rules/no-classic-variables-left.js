@@ -238,6 +238,23 @@ const invalidTests = [
     code: 'const component = () => { return <div style={{ color: theme.darkTheme ? \'black\' : \'white\' }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
+
+  {
+    code: 'const style = `color: ${theme.colors.primary[100]};`',
+    errors: [{ messageId: 'invalid', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const colors = theme.colors; const style = `color: ${colors.primary[100]};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'invalid', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { return <div style={{ color: theme.colors.primary[100] }} /> }',
+    errors: [{ messageId: 'invalid', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const component = () => { const colors = theme.colors; return <div style={{ color: colors.primary[100] }} /> }',
+    errors: [{ messageId: 'invalid', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+  },
 ]
 
 ruleTester.run('no-classic-variables-left', rule, {
