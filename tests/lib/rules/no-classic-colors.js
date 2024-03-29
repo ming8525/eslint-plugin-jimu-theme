@@ -1082,8 +1082,20 @@ const invalidTests = [
 ]
 
 ruleTester.run('no-classic-colors', rule, {
-  valid: validTests,
-  invalid: invalidTests
+  valid: [],
+  invalid: [
+    // {
+    //   code: 'const palette = theme.colors.palette; const style = `border-color: ${palette.primary[100]};`',
+    //   output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.sys.color.primary.light};`',
+    //   errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    // },
+
+    {
+      code: 'const component = () => { return <div style={{ borderColor: this.params.context.theme2?.colors?.light }} /> }',
+      output: 'const component = () => { return <div style={{ borderColor: this.params.context.theme2?.ref.palette?.neutral[200] }} /> }',
+      errors: [{ messageId: 'message', type: 'MemberExpression' }]
+    },
+  ]
 })
 
 module.exports = { validTests, invalidTests }

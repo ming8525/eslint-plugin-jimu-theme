@@ -15,7 +15,7 @@
     "lint:eslint-docs": "npm-run-all \"update:eslint-docs -- --check\"",
     "lint:js": "eslint .",
     "test": "mocha tests --recursive --ignore tests/lib/rules/no-classic-variables.js",
-    "test:file": "mocha --file tests/lib/rules/no-classic-variables-left.js",
+    "test:file": "mocha --file tests/lib/rules/no-classic-colors.js",
     "update:eslint-docs": "eslint-doc-generator"
   },
   "dependencies": {
