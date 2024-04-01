@@ -1077,25 +1077,24 @@ const invalidTests = [
     code: 'const component = () => { const { exbTheme } = params; return <div style={{ border: `1px solid ${exbTheme.colors.primary}` }} /> }',
     output: 'const component = () => { const { exbTheme } = params; return <div style={{ border: `1px solid ${exbTheme.sys.color.primary.main}` }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }],
-    options: [{ themeAliases: ['exbTheme']}]
+    options: [{ themeAliases: ['exbTheme'] }]
   },
+
+  {
+    code: 'const component = () => { return <div style={{ borderColor: this.params.context.theme2?.colors?.light }} /> }',
+    output: 'const component = () => { return <div style={{ borderColor: this.params.context.theme2?.ref.palette?.neutral[200] }} /> }',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  },
+  {
+    code: 'const palette = colors.palette; const colors = theme.colors; const style = `border-color: ${palette.primary[100]};`',
+    output: 'const palette = colors.palette; const colors = theme.colors; const style = `border-color: ${theme.sys.color.primary.light};`',
+    errors: [{ messageId: 'message', type: 'MemberExpression' }]
+  }
 ]
 
 ruleTester.run('no-classic-colors', rule, {
-  valid: [],
-  invalid: [
-    // {
-    //   code: 'const palette = theme.colors.palette; const style = `border-color: ${palette.primary[100]};`',
-    //   output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.sys.color.primary.light};`',
-    //   errors: [{ messageId: 'message', type: 'MemberExpression' }]
-    // },
-
-    {
-      code: 'const component = () => { return <div style={{ borderColor: this.params.context.theme2?.colors?.light }} /> }',
-      output: 'const component = () => { return <div style={{ borderColor: this.params.context.theme2?.ref.palette?.neutral[200] }} /> }',
-      errors: [{ messageId: 'message', type: 'MemberExpression' }]
-    },
-  ]
+  valid: validTests,
+  invalid: invalidTests
 })
 
 module.exports = { validTests, invalidTests }

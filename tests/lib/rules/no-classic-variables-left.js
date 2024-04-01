@@ -253,7 +253,7 @@ const invalidTests = [
   },
   {
     code: 'const component = () => { const colors = theme.colors; return <div style={{ color: colors.primary[100] }} /> }',
-    errors: [{ messageId: 'invalid', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
+    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'invalid', type: 'MemberExpression' }]
   },
 ]
 
