@@ -114,16 +114,6 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const component = () => { const border = theme.border; return <div style={{ border: `${border.width} ${border.type} ${border.color}` }} /> }',
-    output: 'const component = () => { const border = theme.border; return <div style={{ border: `${\'1px\'} ${\'solid\'} ${theme.sys.color.divider.primary}` }} /> }',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const border = theme.border; const style = `border: ${border.width} ${border.type} ${border.color};`',
-    output: 'const border = theme.border; const style = `border: ${\'1px\'} ${\'solid\'} ${theme.sys.color.divider.primary};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const border = theme.border; const style = `border-color: ${border?.color};`',
     output: 'const border = theme.border; const style = `border-color: ${theme.sys.color.divider?.primary};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]

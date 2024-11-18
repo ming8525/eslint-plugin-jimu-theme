@@ -152,13 +152,13 @@ const invalidTests = [
   {
     code: 'const surfaces = theme.surfaces; const style = surfaces?.[2];',
     output: `const surfaces = theme.surfaces; const style = {
-      bg: theme.sys.color.surface.overlay,
-      border: {
-        color: theme.sys.color.divider.secondary,
-        width: '1px'
-      },
-      shadow: theme.sys.shadow.shadow2
-    };`,
+    bg: theme.sys.color.surface.overlay,
+    border: {
+      color: theme.sys.color.divider.secondary,
+      width: '1px'
+    },
+    shadow: theme.sys.shadow.shadow2
+  };`,
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
 
