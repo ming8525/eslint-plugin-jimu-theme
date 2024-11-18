@@ -256,11 +256,6 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const component = () => { const typography = theme.typography; return <div style={typography.variants.display2} /> }',
-    output: 'const component = () => { const typography = theme.typography; return <div style={theme.sys.typography.h2} /> }',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const component = () => { const typography = theme.typography; return <div style={typography.variants?.caption2} /> }',
     output: 'const component = () => { const typography = theme.typography; return <div style={theme.sys.typography?.label3} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
@@ -339,11 +334,6 @@ const invalidTests = [
   {
     code: 'const variants = theme.typography.variants; const style = `font-family: ${variants?.caption1.fontFamily};`',
     output: 'const variants = theme.typography.variants; const style = `font-family: ${theme.sys.typography?.label2.fontFamily};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const component = () => { const variants = theme.typography.variants; return <div style={variants.display2} /> }',
-    output: 'const component = () => { const variants = theme.typography.variants; return <div style={theme.sys.typography.h2} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {

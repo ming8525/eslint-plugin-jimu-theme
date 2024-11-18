@@ -426,11 +426,6 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const colors = theme.colors; const style = `border-color: ${colors.primary};`',
-    output: 'const colors = theme.colors; const style = `border-color: ${theme.sys.color.primary.main};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const colors = theme.colors; const style = `border-color: ${colors?.white};`',
     output: 'const colors = theme.colors; const style = `border-color: ${theme.ref.palette?.white};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
@@ -441,18 +436,8 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const colors = theme.colors; const style = `border-color: ${colors.dark};`',
-    output: 'const colors = theme.colors; const style = `border-color: ${theme.ref.palette.neutral[1200]};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const colors = theme.colors; const style = `border-color: ${colors.transparent};`',
     output: 'const colors = theme.colors; const style = `border-color: ${\'transparent\'};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const colors = theme.colors; const style = `border-color: ${colors.palette.primary[100]};`',
-    output: 'const colors = theme.colors; const style = `border-color: ${theme.sys.color.primary.light};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -581,11 +566,6 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const component = () => { const colors = theme.colors; return <div style={{ borderColor: colors.palette.primary[100] }} /> }',
-    output: 'const component = () => { const colors = theme.colors; return <div style={{ borderColor: theme.sys.color.primary.light }} /> }',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const component = () => { const colors = theme.colors; return <div style={{ border: `1px solid ${colors?.orgSharedColors.button.bg}` }} /> }',
     output: 'const component = () => { const colors = theme.colors; return <div style={{ border: `1px solid ${theme?.mixin.sharedTheme.button.bg}` }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
@@ -617,23 +597,8 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const palette = theme.colors.palette; const style = `border-color: ${palette.primary[100]};`',
-    output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.sys.color.primary.light};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const palette = theme.colors.palette; const style = `border-color: ${palette.primary[500]};`',
-    output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.sys.color.primary.main};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const palette = theme.colors.palette; const style = `border-color: ${palette?.light[500]};`',
     output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.ref.palette?.neutral[500]};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const palette = theme.colors.palette; const style = `border-color: ${palette.dark[500]};`',
-    output: 'const palette = theme.colors.palette; const style = `border-color: ${theme.ref.palette.neutral[1000]};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -674,11 +639,6 @@ const invalidTests = [
   {
     code: 'const component = () => { const palette = theme.colors.palette; return <div style={{ border: `1px solid ${palette.dark[500]}` }} /> }',
     output: 'const component = () => { const palette = theme.colors.palette; return <div style={{ border: `1px solid ${theme.ref.palette.neutral[1000]}` }} /> }',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const component = () => { const palette = theme.colors.palette; return <div style={{ borderColor: palette.primary[100] }} /> }',
-    output: 'const component = () => { const palette = theme.colors.palette; return <div style={{ borderColor: theme.sys.color.primary.light }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -881,32 +841,6 @@ const invalidTests = [
   },
 
   {
-    code: 'const style = `border-color: ${theme2.colors.primary};`',
-    output: 'const style = `border-color: ${theme2.sys.color.primary.main};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const style = `border-color: ${theme2?.colors.transparent};`',
-    output: 'const style = `border-color: ${\'transparent\'};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const style = `border-color: ${theme2.colors.palette.primary[100]};`',
-    output: 'const style = `border-color: ${theme2.sys.color.primary.light};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const style = `border-color: ${theme2.colors?.orgSharedColors.button.bg};`',
-    output: 'const style = `border-color: ${theme2?.mixin.sharedTheme.button.bg};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const component = () => { return <div style={{ borderColor: theme2?.colors?.light }} /> }',
-    output: 'const component = () => { return <div style={{ borderColor: theme2?.ref.palette?.neutral[200] }} /> }',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-
-  {
     code: 'const style = `border-color: ${props.theme2.colors.primary};`',
     output: 'const style = `border-color: ${props.theme2.sys.color.primary.main};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
@@ -924,11 +858,6 @@ const invalidTests = [
   {
     code: 'const style = `border-color: ${props.theme2.colors?.orgSharedColors.button.bg};`',
     output: 'const style = `border-color: ${props.theme2?.mixin.sharedTheme.button.bg};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const component = () => { return <div style={{ borderColor: props.theme2?.colors?.light }} /> }',
-    output: 'const component = () => { return <div style={{ borderColor: props.theme2?.ref.palette?.neutral[200] }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
 

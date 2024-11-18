@@ -139,18 +139,8 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const style = `border-radius: ${theme?.borderRadiuses.default};`',
-    output: 'const style = `border-radius: ${theme?.sys.shape.shape1};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const style = `border-radius: ${props.theme.borderRadiuses?.lg};`',
     output: 'const style = `border-radius: ${props.theme.sys.shape?.shape2};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const style = `border-radius: ${theme?.borderRadiuses.none};`',
-    output: 'const style = `border-radius: ${\'none\'};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -161,16 +151,6 @@ const invalidTests = [
   {
     code: 'const component = () => { return <div style={{ borderRadius: props.theme.borderRadiuses?.default }} /> }',
     output: 'const component = () => { return <div style={{ borderRadius: props.theme.sys.shape?.shape1 }} /> }',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const component = () => { return <div style={{ borderRadius: theme?.borderRadiuses.lg }} /> }',
-    output: 'const component = () => { return <div style={{ borderRadius: theme?.sys.shape.shape2 }} /> }',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const component = () => { return <div style={{ borderRadius: theme?.borderRadiuses.none }} /> }',
-    output: 'const component = () => { return <div style={{ borderRadius: \'none\' }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {

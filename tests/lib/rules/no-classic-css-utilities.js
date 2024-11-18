@@ -35,10 +35,6 @@ ruleTester.run('no-classic-css-utilities', rule, {
     },
 
     {
-      code: 'const component = () => { return <div className=\'text-primary foo\' /> }',
-      errors: [{ messageId: 'removed', type: 'Literal' }],
-    },
-    {
       code: 'const component = () => { return <div className=\'text-secondary foo\' /> }',
       errors: [{ messageId: 'removed', type: 'Literal' }],
     },

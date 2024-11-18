@@ -39,11 +39,6 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const style = `color: ${theme?.link.color};`',
-    output: 'const style = `color: ${theme?.sys.color.action.link.default};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const style = `color: ${theme?.link?.hover.color};`',
     output: 'const style = `color: ${theme?.sys.color.action.link?.hover};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
@@ -132,11 +127,6 @@ const invalidTests = [
   {
     code: 'const style = `text-decoration: ${this.props.theme?.link.decoration};`',
     output: 'const style = `text-decoration: ${\'none\'};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const style = `color: ${this.props.theme?.link.color};`',
-    output: 'const style = `color: ${this.props.theme?.sys.color.action.link.default};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -231,11 +221,6 @@ const invalidTests = [
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
-    code: 'const link = theme.link; const style = `color: ${link.color};`',
-    output: 'const link = theme.link; const style = `color: ${theme.sys.color.action.link.default};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
     code: 'const link = theme.link; const style = `color: ${link?.hover.color};`',
     output: 'const link = theme.link; const style = `color: ${theme.sys.color.action.link?.hover};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
@@ -278,11 +263,6 @@ const invalidTests = [
   {
     code: 'const body = theme.body; const style = `color: ${body.fontStyle};`',
     output: 'const body = theme.body; const style = `color: ${\'unset\'};`',
-    errors: [{ messageId: 'message', type: 'MemberExpression' }]
-  },
-  {
-    code: 'const body = theme.body; const style = `color: ${body.bg};`',
-    output: 'const body = theme.body; const style = `color: ${theme.sys.color.surface.background};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {

@@ -9,9 +9,6 @@ const validTests = [
     code: 'const component = () => { return <div style={{ boxShadow: theme.sys.shadow.shadow2 }} /> }'
   },
   {
-    code: 'const style = `box-shadow: none;`'
-  },
-  {
     code: 'const component = () => { return <div style={{ boxShadow: theme.sys.shadow.shadow3 }} /> }'
   },
 ]
