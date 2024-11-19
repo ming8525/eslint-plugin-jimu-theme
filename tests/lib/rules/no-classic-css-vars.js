@@ -25,6 +25,38 @@ ruleTester.run('no-classic-css-vars', rule, {
 
   invalid: [
     {
+      code: 'const component = () => { return <WarningOutlined color={\'var(--primary)\'} /> };',
+      output: 'const component = () => { return <WarningOutlined color={\'var(--sys-color-primary-main)\'} /> };',
+      errors: [{ messageId: 'message', type: 'Literal' }]
+    },
+    {
+      code: 'const component = () => { return <WarningOutlined color=\'var(--primary)\' /> };',
+      output: 'const component = () => { return <WarningOutlined color=\'var(--sys-color-primary-main)\' /> };',
+      errors: [{ messageId: 'message', type: 'Literal' }]
+    },
+    {
+      code: 'const component = () => { return <WarningOutlined color=\'var(--primary-100)\' /> };',
+      output: 'const component = () => { return <WarningOutlined color=\'var(--sys-color-primary-light)\' /> };',
+      errors: [{ messageId: 'message', type: 'Literal' }]
+    },
+    {
+      code: 'const component = () => { return <WarningOutlined color=\'var(--org-body-bg)\' /> };',
+      output: 'const component = () => { return <WarningOutlined color=\'var(--mixin-shared-theme-body-bg)\' /> };',
+      errors: [{ messageId: 'message', type: 'Literal' }]
+    },
+
+    {
+      code: 'const component = () => { return <Tooltip arrowStyle={{ background: \'var(--light-300)\', border: { color: \'var(--primary)\', width: \'1px\' } }} /> };',
+      output: 'const component = () => { return <Tooltip arrowStyle={{ background: \'var(--ref-palette-neutral-400)\', border: { color: \'var(--sys-color-primary-main)\', width: \'1px\' } }} /> };',
+      errors: [{ messageId: 'message', type: 'Literal' }, { messageId: 'message', type: 'Literal' }]
+    },
+    {
+      code: 'const component = () => { return <Tooltip arrowStyle={{ background: \'var(--primary)\', border: { color: \'var(--org-body-bg)\', width: \'1px\' } }} /> };',
+      output: 'const component = () => { return <Tooltip arrowStyle={{ background: \'var(--sys-color-primary-main)\', border: { color: \'var(--mixin-shared-theme-body-bg)\', width: \'1px\' } }} /> };',
+      errors: [{ messageId: 'message', type: 'Literal' }, { messageId: 'message', type: 'Literal' }]
+    },
+
+    {
       code: 'const color = \'var(--primary)\';',
       output: 'const color = \'var(--sys-color-primary-main)\';',
       errors: [{ messageId: 'message', type: 'Literal' }]
