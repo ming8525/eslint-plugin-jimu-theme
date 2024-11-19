@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jimu-theme",
-  "version": "2.0.0",
+  "version": "2.1.0-beta.0",
   "description": "This plug-in is used to assist in migrating jimu-theme variables to the new version.",
   "keywords": [
     "eslint",
