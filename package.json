@@ -15,10 +15,11 @@
     "lint:eslint-docs": "npm-run-all \"update:eslint-docs -- --check\"",
     "lint:js": "eslint .",
     "test": "mocha tests --recursive --ignore tests/lib/rules/no-classic-variables.js",
-    "test:file": "mocha --file tests/lib/rules/no-classic-variables.js",
+    "test:file": "mocha --file tests/lib/rules/no-classic-css-vars.js",
     "update:eslint-docs": "eslint-doc-generator"
   },
   "dependencies": {
+    "minimatch": "^10.0.1",
     "requireindex": "^1.2.0"
   },
   "devDependencies": {

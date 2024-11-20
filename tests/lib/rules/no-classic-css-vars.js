@@ -25,6 +25,21 @@ ruleTester.run('no-classic-css-vars', rule, {
 
   invalid: [
     {
+      code: 'const component = () => { return <WarningOutlined color=\'var(--primary-100)\' /> };',
+      output: 'const component = () => { return <WarningOutlined color=\'var(--sys-color-primary-light)\' /> };',
+      filename: 'project/app/component.js',
+      options: [{ invertShadeLightDarkPaths: ['**/builder/*.js'] }],
+      errors: [{ messageId: 'message', type: 'Literal' }]
+    },
+    {
+      code: 'const component = () => { return <WarningOutlined color=\'var(--primary-100)\' /> };',
+      output: 'const component = () => { return <WarningOutlined color=\'var(--sys-color-primary-dark)\' /> };',
+      filename: 'project/builder/component.js',
+      options: [{ invertShadeLightDarkPaths: ['**/builder/*.js'] }],
+      errors: [{ messageId: 'message', type: 'Literal' }]
+    },
+    
+    {
       code: 'const component = () => { return <WarningOutlined color={\'var(--primary)\'} /> };',
       output: 'const component = () => { return <WarningOutlined color={\'var(--sys-color-primary-main)\'} /> };',
       errors: [{ messageId: 'message', type: 'Literal' }]
