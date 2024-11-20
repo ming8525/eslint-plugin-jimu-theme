@@ -8,13 +8,14 @@ const ruleTester = new RuleTester({
     parserOptions: {
       parser: '@typescript-eslint/parser',
       projectService: {
-        allowDefaultProject: ['*.js'],
+        allowDefaultProject: ['*.js', 'project/builder/*.js', 'project/app/*.js'],
       },
       ecmaFeatures: {
         jsx: true
       },
       ecmaVersion: 6,
       tsconfigRootDir: path.join(__dirname, '../../fixture'),
+      allowAutomaticSingleRunInference: true,
     }
   }
 })
