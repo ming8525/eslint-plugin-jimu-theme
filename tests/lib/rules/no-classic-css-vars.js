@@ -20,14 +20,45 @@ ruleTester.run('no-classic-css-vars', rule, {
     },
     {
       code: 'const component = () => { return <div style={{ border: \'1px solid var(--mixin-shared-theme-body-color)\' }} /> }'
-    }
+    },
+    {
+      filename: 'project/test/example.json',
+      code: JSON.stringify({
+        color: 'var(--sys-color-primary-main)',
+      })
+    },
   ],
 
   invalid: [
     {
+      filename: 'project/test/example.json',
+      code: JSON.stringify({
+        color: 'var(--primary)',
+        background: 'var(--primary-100)',
+      }),
+      output: JSON.stringify({
+        color: 'var(--sys-color-primary-main)',
+        background: 'var(--sys-color-primary-light)',
+      }),
+      errors:[{ messageId: 'message', type: 'Literal' }, { messageId: 'message', type: 'Literal' }],
+    }, {
+      filename: 'project/test/example.json',
+      code: JSON.stringify({
+        color: 'var(--primary)',
+        background: 'var(--primary-100)',
+      }),
+      output: JSON.stringify({
+        color: 'var(--sys-color-primary-main)',
+        background: 'var(--sys-color-primary-dark)',
+      }),
+      options: [{ invertShadeLightDarkPaths: ['**/test/*.json'] }],
+      errors:[{ messageId: 'message', type: 'Literal' }, { messageId: 'message', type: 'Literal' }],
+    },
+
+    {
       code: 'const component = () => { return <WarningOutlined color=\'var(--primary-100)\' /> };',
       output: 'const component = () => { return <WarningOutlined color=\'var(--sys-color-primary-light)\' /> };',
-      filename: 'project/app/component.js',
+      filename: 'project/test/component.js',
       options: [{ invertShadeLightDarkPaths: ['**/builder/*.js'] }],
       errors: [{ messageId: 'message', type: 'Literal' }]
     },
@@ -38,7 +69,7 @@ ruleTester.run('no-classic-css-vars', rule, {
       options: [{ invertShadeLightDarkPaths: ['**/builder/*.js'] }],
       errors: [{ messageId: 'message', type: 'Literal' }]
     },
-    
+
     {
       code: 'const component = () => { return <WarningOutlined color={\'var(--primary)\'} /> };',
       output: 'const component = () => { return <WarningOutlined color={\'var(--sys-color-primary-main)\'} /> };',
@@ -232,7 +263,7 @@ ruleTester.run('no-classic-css-vars', rule, {
       output: 'const style = `border-color: var(--mixin-shared-theme-button-color);`',
       errors: [{ messageId: 'message', type: 'TemplateLiteral' }]
     },
-    
+
     {
       code: 'const component = () => { return <div style={{ border: \'1px solid var(--primary)\' }} /> }',
       output: 'const component = () => { return <div style={{ border: \'1px solid var(--sys-color-primary-main)\' }} /> }',
