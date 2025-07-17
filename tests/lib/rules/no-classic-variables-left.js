@@ -149,7 +149,6 @@ const invalidTests = [
     code: 'const component = () => { theme.typography && theme.typography.variants && theme.typography.variants.body1.color; return <div style={{ color }} /> }',
     errors: [{ messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }, { messageId: 'message', type: 'MemberExpression' }]
   },
-//
   {
     code: 'const style = `color: ${theme.header.color};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
@@ -261,4 +260,3 @@ ruleTester.run('no-classic-variables-left', rule, {
   valid: validTests,
   invalid: invalidTests
 })
-
