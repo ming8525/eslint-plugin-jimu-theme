@@ -3,24 +3,24 @@ const rule = require('../../../lib/rules/no-classic-elements')
 
 const validTests = [
   {
-    code: 'const style = `color: ${theme.comp?.Header.root.vars.color};`'
+    code: 'const style = `color: ${theme.sys?.color.surface.headerText};`'
   },
 ]
 
 const invalidTests = [
   {
     code: 'const style = `color: ${theme.header.color};`',
-    output: 'const style = `color: ${theme.comp?.Header.root.vars.color};`',
+    output: 'const style = `color: ${theme.sys?.color.surface.headerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
     code: 'const style = `color: ${theme?.footer.color};`',
-    output: 'const style = `color: ${theme?.comp?.Footer.root.vars.color};`',
+    output: 'const style = `color: ${theme?.sys?.color.surface.footerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
     code: 'const style = `color: ${theme.footer?.color};`',
-    output: 'const style = `color: ${theme.comp?.Footer.root.vars?.color};`',
+    output: 'const style = `color: ${theme.sys?.color.surface?.footerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -101,17 +101,17 @@ const invalidTests = [
 
   {
     code: 'const style = `color: ${this.props.theme.header.color};`',
-    output: 'const style = `color: ${this.props.theme.comp?.Header.root.vars.color};`',
+    output: 'const style = `color: ${this.props.theme.sys?.color.surface.headerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
     code: 'const style = `color: ${this.props.theme?.footer.color};`',
-    output: 'const style = `color: ${this.props.theme?.comp?.Footer.root.vars.color};`',
+    output: 'const style = `color: ${this.props.theme?.sys?.color.surface.footerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
     code: 'const style = `color: ${this.props.theme.footer?.color};`',
-    output: 'const style = `color: ${this.props.theme.comp?.Footer.root.vars?.color};`',
+    output: 'const style = `color: ${this.props.theme.sys?.color.surface?.footerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -192,17 +192,17 @@ const invalidTests = [
 
   {
     code: 'const header = theme.header; const style = `color: ${header.color};`',
-    output: 'const header = theme.header; const style = `color: ${theme.comp?.Header.root.vars.color};`',
+    output: 'const header = theme.header; const style = `color: ${theme.sys?.color.surface.headerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
     code: 'const footer = theme.footer; const style = `color: ${footer.color};`',
-    output: 'const footer = theme.footer; const style = `color: ${theme.comp?.Footer.root.vars.color};`',
+    output: 'const footer = theme.footer; const style = `color: ${theme.sys?.color.surface.footerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
     code: 'const footer = theme.footer; const style = `color: ${footer?.color};`',
-    output: 'const footer = theme.footer; const style = `color: ${theme.comp?.Footer.root.vars?.color};`',
+    output: 'const footer = theme.footer; const style = `color: ${theme.sys?.color.surface?.footerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -278,7 +278,7 @@ const invalidTests = [
 
   {
     code: 'const style = `color: ${theme2.header.color};`',
-    output: 'const style = `color: ${theme2.comp?.Header.root.vars.color};`',
+    output: 'const style = `color: ${theme2.sys?.color.surface.headerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -304,7 +304,7 @@ const invalidTests = [
 
   {
     code: 'const style = `color: ${builderTheme.header.color};`',
-    output: 'const style = `color: ${builderTheme.comp?.Header.root.vars.color};`',
+    output: 'const style = `color: ${builderTheme.sys?.color.surface.headerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
@@ -330,7 +330,7 @@ const invalidTests = [
 
   {
     code: 'const style = `color: ${this.theme.header.color};`',
-    output: 'const style = `color: ${this.theme.comp?.Header.root.vars.color};`',
+    output: 'const style = `color: ${this.theme.sys?.color.surface.headerText};`',
     errors: [{ messageId: 'message', type: 'MemberExpression' }]
   },
   {
